@@ -52,7 +52,7 @@ namespace StackExchange.StacMan.Tests
 
             var client = mock.Object;
 
-            var result = client.Questions.GetByIds("gaming", new int[] { 13332 }, order: Order.Desc, sort: Questions.Sort.Activity).Result;
+            var result = client.Questions.GetByIds("gaming", new[] { 13332 }, order: Order.Desc, sort: Questions.Sort.Activity).Result;
             Assert.IsTrue(result.Success);
 
             var question = result.Data.Items.Single();

@@ -57,7 +57,7 @@ namespace StackExchange.StacMan.Tests
 
             var client = mock.Object;
 
-            var result = client.Users.GetAssociated(new int[] { 1998 }, pagesize: 2).Result;
+            var result = client.Users.GetAssociated(new[] { 1998 }, pagesize: 2).Result;
             Assert.IsTrue(result.Success);
 
             var networkUser = result.Data.Items.First();

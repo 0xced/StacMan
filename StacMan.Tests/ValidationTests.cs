@@ -20,19 +20,19 @@ namespace StackExchange.StacMan.Tests
         [TestMethod]
         public void Invalidates_null_or_empty_site()
         {
-            Client.Users.GetByIds("stackoverflow", new int[] { 1, 2, 3 });
-            Assert2.ThrowsArgumentNullException(() => Client.Users.GetByIds(null, new int[] { 1, 2, 3 }), "site");
-            Assert2.ThrowsArgumentException(() => Client.Users.GetByIds(String.Empty, new int[] { 1, 2, 3 }), "site");
+            Client.Users.GetByIds("stackoverflow", new[] { 1, 2, 3 });
+            Assert2.ThrowsArgumentNullException(() => Client.Users.GetByIds(null, new[] { 1, 2, 3 }), "site");
+            Assert2.ThrowsArgumentException(() => Client.Users.GetByIds(String.Empty, new[] { 1, 2, 3 }), "site");
         }
 
         [TestMethod]
         public void Invalidates_null_or_empty_vector()
         {
-            Client.Users.GetByIds("stackoverflow", new int[] { 1, 2, 3 });
+            Client.Users.GetByIds("stackoverflow", new[] { 1, 2, 3 });
             Assert2.ThrowsArgumentNullException(() => Client.Users.GetByIds("stackoverflow", null), "ids");
             Assert2.ThrowsArgumentException(() => Client.Users.GetByIds("stackoverflow", new int[0]), "ids");
 
-            Client.Filters.Read(new string[] { "foo", "bar", "baz" });
+            Client.Filters.Read(new[] { "foo", "bar", "baz" });
             Assert2.ThrowsArgumentNullException(() => Client.Filters.Read(null), "filters");
             Assert2.ThrowsArgumentException(() => Client.Filters.Read(new string[0]), "filters");
         }
@@ -40,9 +40,9 @@ namespace StackExchange.StacMan.Tests
         [TestMethod]
         public void Invalidates_bad_paging()
         {
-            Client.Users.GetByIds("stackoverflow", new int[] { 1, 2, 3 }, page: 1, pagesize: 0);
-            Assert2.ThrowsArgumentException(() => Client.Users.GetByIds("stackoverflow", new int[] { 1, 2, 3 }, page: 0, pagesize: 10), "page");
-            Assert2.ThrowsArgumentException(() => Client.Users.GetByIds("stackoverflow", new int[] { 1, 2, 3 }, page: 10, pagesize: -1), "pagesize");
+            Client.Users.GetByIds("stackoverflow", new[] { 1, 2, 3 }, page: 1, pagesize: 0);
+            Assert2.ThrowsArgumentException(() => Client.Users.GetByIds("stackoverflow", new[] { 1, 2, 3 }, page: 0, pagesize: 10), "page");
+            Assert2.ThrowsArgumentException(() => Client.Users.GetByIds("stackoverflow", new[] { 1, 2, 3 }, page: 10, pagesize: -1), "pagesize");
         }
 
         [TestMethod]

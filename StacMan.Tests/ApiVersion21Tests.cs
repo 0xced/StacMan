@@ -47,7 +47,7 @@ namespace StackExchange.StacMan.Tests
 
             var client = mock.Object;
 
-            var result = client.Users.GetMerges(new int[] { 1450259 }).Result;
+            var result = client.Users.GetMerges(new[] { 1450259 }).Result;
             Assert.IsTrue(result.Success);
 
             var merge = result.Data.Items.Single();
@@ -73,7 +73,7 @@ namespace StackExchange.StacMan.Tests
             var client = mock.Object;
 
             var result = client.Users.GetTopAnswerTags("stackoverflow", 1, pagesize: 3).Result;
-            var resultVectorized = client.Users.GetTopAnswerTags("stackoverflow.com", new int[] { 1, 3 }, pagesize: 3).Result;
+            var resultVectorized = client.Users.GetTopAnswerTags("stackoverflow.com", new[] { 1, 3 }, pagesize: 3).Result;
 
             Assert.IsTrue(result.Success);
             Assert.IsTrue(resultVectorized.Success);
@@ -89,7 +89,7 @@ namespace StackExchange.StacMan.Tests
 
             var client = mock.Object;
 
-            Assert2.Throws<InvalidOperationException>(() => client.Users.GetTopAnswerTags("stackoverflow.com", new int[] { 1, 3 }, pagesize: 3));
+            Assert2.Throws<InvalidOperationException>(() => client.Users.GetTopAnswerTags("stackoverflow.com", new[] { 1, 3 }, pagesize: 3));
         }
 
         [TestMethod]
@@ -102,7 +102,7 @@ namespace StackExchange.StacMan.Tests
 
             var client = mock.Object;
 
-            var result = client.Questions.GetByIds("stackoverflow", new int[] { 7399584 }, order: Order.Desc, sort: Questions.Sort.Activity, filter: "!9hnGsqOrt").Result;
+            var result = client.Questions.GetByIds("stackoverflow", new[] { 7399584 }, order: Order.Desc, sort: Questions.Sort.Activity, filter: "!9hnGsqOrt").Result;
             Assert.IsTrue(result.Success);
 
             var question = result.Data.Items.Single();
@@ -122,7 +122,7 @@ namespace StackExchange.StacMan.Tests
 
             var client = mock.Object;
 
-            var result = client.Users.GetReputationHistory("stackoverflow", new int[] { 2749 }, pagesize: 3).Result;
+            var result = client.Users.GetReputationHistory("stackoverflow", new[] { 2749 }, pagesize: 3).Result;
             Assert.IsTrue(result.Success);
 
             var second = result.Data.Items[1];

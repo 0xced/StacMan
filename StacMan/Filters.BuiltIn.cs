@@ -10,7 +10,7 @@
         {
             FilterName = "default",
             FilterType = Filters.FilterType.Safe,
-            IncludedFields = new string[]
+            IncludedFields = new[]
             {
                 ".backoff",
                 ".error_id",
@@ -264,7 +264,7 @@
         {
             FilterName = "withbody",
             FilterType = Filters.FilterType.Safe,
-            IncludedFields = new string[]
+            IncludedFields = new[]
             {
                 ".backoff",
                 ".error_id",
@@ -537,7 +537,7 @@
         {
             FilterName = "total",
             FilterType = Filters.FilterType.Safe,
-            IncludedFields = new string[]
+            IncludedFields = new[]
             {
                 ".total"
             }
