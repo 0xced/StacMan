@@ -25,7 +25,7 @@ manager.StartHeader();
 <#
 manager.EndBlock();
 
-var methodsJson = File.ReadAllText(this.Host.ResolvePath("Methods.json"));
+var methodsJson = File.ReadAllText(Host.ResolvePath("Methods.json"));
 var serializer = new JavaScriptSerializer();
 var typesObj = serializer.Deserialize<Dictionary<string, object>>(methodsJson);
 

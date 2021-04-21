@@ -73,7 +73,7 @@ namespace StackExchange.StacMan.Tests
             Assert.AreEqual(1334611626L.ToDateTime(), networkUser.LastAccessDate);
             Assert.AreEqual(144, networkUser.AnswerCount);
             Assert.AreEqual(20, networkUser.QuestionCount);
-            Assert.AreEqual(default(StackExchange.StacMan.Users.UserType), networkUser.UserType);
+            Assert.AreEqual(default(Users.UserType), networkUser.UserType);
         }
     }
 }

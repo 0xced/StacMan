@@ -31,7 +31,7 @@ namespace StackExchange.StacMan.Tests
             Assert.AreEqual("professional and enthusiast programmers", site.Audience);
             Assert.AreEqual("http://cdn.sstatic.net/stackoverflow/img/apple-touch-icon.png", site.IconUrl);
             Assert.AreEqual("http://www.stackoverflow.com", site.Aliases.Single());
-            Assert.AreEqual(StacMan.Sites.SiteState.Normal, site.SiteState);
+            Assert.AreEqual(Sites.SiteState.Normal, site.SiteState);
             Assert.AreEqual("#0077CC", site.Styling.LinkColor);
             Assert.AreEqual("#3E6D8E", site.Styling.TagForegroundColor);
             Assert.AreEqual("#E0EAF1", site.Styling.TagBackgroundColor);

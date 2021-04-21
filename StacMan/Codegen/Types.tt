@@ -20,7 +20,7 @@ manager.StartHeader();
 <#
 manager.EndBlock();
 
-var typesJson = File.ReadAllText(this.Host.ResolvePath("Types.json"));
+var typesJson = File.ReadAllText(Host.ResolvePath("Types.json"));
 var serializer = new JavaScriptSerializer();
 var typesObj = serializer.Deserialize<Dictionary<string, Dictionary<string, string>>>(typesJson);
 
