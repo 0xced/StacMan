@@ -125,7 +125,7 @@ namespace StackExchange.StacMan
                             var timer = new System.Timers.Timer(seconds * 1000);
 
                             timer.AutoReset = false;
-                            timer.Elapsed += (sender, e) => send();
+                            timer.Elapsed += (_, _) => send();
                             timer.Start();
                         }
                         else

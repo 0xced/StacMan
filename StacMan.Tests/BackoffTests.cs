@@ -24,8 +24,8 @@ namespace StackExchange.StacMan.Tests
             Action<StacManClient, Action<long>> measure = (client, verifyElapsedMs) =>
             {
                 var stopwatch = System.Diagnostics.Stopwatch.StartNew();
-                var result = client.Users.GetAll("stackoverflow", pagesize: 1).Result;
-                var result2 = client.Users.GetAll("stackoverflow", pagesize: 1).Result;
+                _ = client.Users.GetAll("stackoverflow", pagesize: 1).Result;
+                _ = client.Users.GetAll("stackoverflow", pagesize: 1).Result;
                 verifyElapsedMs(stopwatch.ElapsedMilliseconds);
             };
 

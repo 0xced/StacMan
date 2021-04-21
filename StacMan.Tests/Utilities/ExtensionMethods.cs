@@ -15,7 +15,7 @@ namespace StackExchange.StacMan.Tests.Utilities
         public static void FakeGET(this Mock<StacManClient> mock, string response = null, Exception throws = null)
         {
             mock.Setup(c => c.FetchApiResponseWithGET(It.IsAny<string>(), It.IsAny<Action<string>>(), It.IsAny<Action<Exception>>()))
-                .Callback<string, Action<string>, Action<Exception>>((url, success, error) =>
+                .Callback<string, Action<string>, Action<Exception>>((_, success, error) =>
                     {
                         if (throws != null)
                             error(throws);
@@ -27,7 +27,7 @@ namespace StackExchange.StacMan.Tests.Utilities
         public static void FakeGETForUrlPattern(this Mock<StacManClient> mock, string regex, string response = null, Exception throws = null)
         {
             mock.Setup(c => c.FetchApiResponseWithGET(It.IsRegex(regex), It.IsAny<Action<string>>(), It.IsAny<Action<Exception>>()))
-                .Callback<string, Action<string>, Action<Exception>>((url, success, error) =>
+                .Callback<string, Action<string>, Action<Exception>>((_, success, error) =>
                     {
                         if (throws != null)
                             error(throws);
@@ -39,7 +39,7 @@ namespace StackExchange.StacMan.Tests.Utilities
         public static void FakePOST(this Mock<StacManClient> mock, string response = null, Exception throws = null)
         {
             mock.Setup(c => c.FetchApiResponseWithPOST(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<Action<string>>(), It.IsAny<Action<Exception>>()))
-                .Callback<string, string, Action<string>, Action<Exception>>((url, data, success, error) =>
+                .Callback<string, string, Action<string>, Action<Exception>>((_, _, success, error) =>
                 {
                     if (throws != null)
                         error(throws);
