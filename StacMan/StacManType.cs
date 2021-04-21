@@ -1,7 +1,4 @@
-﻿using System;
-using System.Linq;
-
-namespace StackExchange.StacMan
+﻿namespace StackExchange.StacMan
 {
     /// <summary>
     /// Empty base class for ease of StacMan design.
