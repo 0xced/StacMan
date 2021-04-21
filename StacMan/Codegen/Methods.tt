@@ -343,7 +343,7 @@ string GetSortParameterType(string sortTypeName)
         case "SortType.BadgeType":
             return "Badges.BadgeType?";
         default:
-            throw new ArgumentOutOfRangeException("sortTypeName");
+            throw new ArgumentOutOfRangeException(nameof(sortTypeName));
     }
 }
 
@@ -362,7 +362,7 @@ string GetSortMinParameterName(string sortTypeName)
         case "SortType.BadgeType":
             return "mintype";
         default:
-            throw new ArgumentOutOfRangeException("sortTypeName");
+            throw new ArgumentOutOfRangeException(nameof(sortTypeName));
     }
 }
 
@@ -381,7 +381,7 @@ string GetSortMaxParameterName(string sortTypeName)
         case "SortType.BadgeType":
             return "maxtype";
         default:
-            throw new ArgumentOutOfRangeException("sortTypeName");
+            throw new ArgumentOutOfRangeException(nameof(sortTypeName));
     }
 }
 
