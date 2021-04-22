@@ -44,6 +44,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 
+#nullable enable
+
 namespace StackExchange.StacMan
 {
     public partial class StacManClient : <#= interfaceName #>
@@ -63,7 +65,7 @@ namespace StackExchange.StacMan
         var requiredParams = new List<Parameter>();
         var optionalParams = new List<Parameter>();
 
-        optionalParams.Add(new Parameter("filter", "string"));
+        optionalParams.Add(new Parameter("filter", "string", nullable: true));
 
         var methodObj = (Dictionary<string, object>)methodsObj[methodKey];
         var description = (string)methodObj["description"];
@@ -89,15 +91,15 @@ namespace StackExchange.StacMan
         var hasPaging = methodObj.ContainsKey("hasPaging") && (bool)methodObj["hasPaging"];
         if (hasPaging)
         {
-            optionalParams.Add(new Parameter("page", "int?"));
-            optionalParams.Add(new Parameter("pagesize", "int?"));
+            optionalParams.Add(new Parameter("page", "int", nullable: true));
+            optionalParams.Add(new Parameter("pagesize", "int", nullable: true));
         }
 
         var hasFromToDate = methodObj.ContainsKey("hasFromToDate") && (bool)methodObj["hasFromToDate"];
         if (hasFromToDate)
         {
-            optionalParams.Add(new Parameter("fromdate", "DateTime?"));
-            optionalParams.Add(new Parameter("todate", "DateTime?"));
+            optionalParams.Add(new Parameter("fromdate", "DateTime", nullable: true));
+            optionalParams.Add(new Parameter("todate", "DateTime", nullable: true));
         }
 
         IEnumerable<Parameter> sortParams = null;
@@ -105,23 +107,23 @@ namespace StackExchange.StacMan
         if (hasSort)
         {
             var sortType = (string)methodObj["sortType"];
-            optionalParams.Add(new Parameter("sort", sortType + "?"));
+            optionalParams.Add(new Parameter("sort", sortType));
             sortParams = GetSortParameters(sortType);
             optionalParams.AddRange(sortParams);
-            optionalParams.Add(new Parameter("order", "Order?"));
+            optionalParams.Add(new Parameter("order", "Order", nullable: true));
         }
 
         if (methodObj.ContainsKey("optional"))
         {
             var optionalObj = (Dictionary<string, object>)methodObj["optional"];
-            optionalParams.AddRange(optionalObj.Select(p => new Parameter(p.Key, (string)p.Value)));
+            optionalParams.AddRange(optionalObj.Select(p => new Parameter(p.Key, (string)p.Value, nullable: true)));
         }
 
-        var paramsString = String.Join(", ", requiredParams.Concat(optionalParams).Select(p => p.Type + " " + p.VariableName));
+        var paramsString = String.Join(", ", requiredParams.Concat(optionalParams).Select(p => p.Declaration));
 
         var interfaceParamsString = String.Join(", ", 
-            requiredParams.Select(p => p.Type + " " + p.VariableName)
-                .Concat(optionalParams.Select(p => p.Type + " " + p.VariableName + " = null")));
+            requiredParams.Select(p => p.Declaration)
+                .Concat(optionalParams.Select(p => p.Declaration + " = default")));
 #>
 
         Task<StacManResponse<<#= returnTypeName #>>> <#= interfaceName#>.<#= methodName #>(<#= paramsString #>)
@@ -263,15 +265,19 @@ class InterfaceSignature
 
 class Parameter
 {
-    public Parameter(string name, string type)
+    public Parameter(string name, string type, bool nullable = false)
     {
         Name = name;
         Type = type;
         VariableName = CSharpKeywords.Contains(name) ? ("@" + name) : name;
         ApiName = name.StartsWith("min") ? "min" : (name.StartsWith("max") ? "max" : name);
+        Nullable = nullable;
     }
 
     public readonly string Name, Type, VariableName, ApiName;
+    public readonly bool Nullable;
+
+    public string Declaration => $"{Type}{(Nullable ? "?" : "")} {VariableName}";
 
     private static readonly string[] CSharpKeywords = new[] { "abstract", "event", "new", "struct", "as", "explicit", "null", "switch", "base", "extern", "object", "this", "bool", "false", "operator", "throw", "break", "finally", "out", "true", "byte", "fixed", "override", "try", "case", "float", "params", "typeof", "catch", "for", "private", "uint", "char", "foreach", "protected", "ulong", "checked", "goto", "public", "unchecked", "class", "if", "readonly", "unsafe", "const", "implicit", "ref", "ushort", "continue", "in", "return", "using", "decimal", "int", "sbyte", "virtual", "default", "interface", "sealed", "volatile", "delegate", "internal", "short", "void", "do", "is", "sizeof", "while", "double", "lock", "stackalloc", "else", "long", "static", "enum", "namespace", "string" };
 }
@@ -323,8 +329,8 @@ IEnumerable<Parameter> GetSortParameters(string sortName)
 
     return sortTypeNames.SelectMany(n => new[]
         {
-            new Parameter(GetSortMinParameterName(n), GetSortParameterType(n)),
-            new Parameter(GetSortMaxParameterName(n), GetSortParameterType(n))
+            new Parameter(GetSortMinParameterName(n), GetSortParameterType(n), nullable: true),
+            new Parameter(GetSortMaxParameterName(n), GetSortParameterType(n), nullable: true)
         });
 }
 
@@ -333,15 +339,15 @@ string GetSortParameterType(string sortTypeName)
     switch (sortTypeName)
     {
         case "SortType.DateTime":
-            return "DateTime?";
+            return "DateTime";
         case "SortType.Integer":
-            return "int?";
+            return "int";
         case "SortType.String":
             return "string";
         case "SortType.BadgeRank":
-            return "Badges.Rank?";
+            return "Badges.Rank";
         case "SortType.BadgeType":
-            return "Badges.BadgeType?";
+            return "Badges.BadgeType";
         default:
             throw new ArgumentOutOfRangeException(nameof(sortTypeName));
     }

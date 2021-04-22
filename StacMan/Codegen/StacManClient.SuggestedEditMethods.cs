@@ -10,6 +10,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 
+#nullable enable
+
 namespace StackExchange.StacMan
 {
     public partial class StacManClient : ISuggestedEditMethods
@@ -22,7 +24,7 @@ namespace StackExchange.StacMan
             get { return this; }
         }
 
-        Task<StacManResponse<SuggestedEdit>> ISuggestedEditMethods.GetAll(string site, string filter, int? page, int? pagesize, DateTime? fromdate, DateTime? todate, SuggestedEdits.Sort? sort, DateTime? mindate, DateTime? maxdate, Order? order)
+        Task<StacManResponse<SuggestedEdit>> ISuggestedEditMethods.GetAll(string site, string? filter, int? page, int? pagesize, DateTime? fromdate, DateTime? todate, SuggestedEdits.Sort sort, DateTime? mindate, DateTime? maxdate, Order? order)
         {
             ValidateString(site, "site");
             ValidatePaging(page, pagesize);
@@ -44,7 +46,7 @@ namespace StackExchange.StacMan
             return CreateApiTask<SuggestedEdit>(ub, HttpMethod.GET, "/suggested-edits");
         }
 
-        Task<StacManResponse<SuggestedEdit>> ISuggestedEditMethods.GetByIds(string site, IEnumerable<int> ids, string filter, int? page, int? pagesize, DateTime? fromdate, DateTime? todate, SuggestedEdits.Sort? sort, DateTime? mindate, DateTime? maxdate, Order? order)
+        Task<StacManResponse<SuggestedEdit>> ISuggestedEditMethods.GetByIds(string site, IEnumerable<int> ids, string? filter, int? page, int? pagesize, DateTime? fromdate, DateTime? todate, SuggestedEdits.Sort sort, DateTime? mindate, DateTime? maxdate, Order? order)
         {
             ValidateString(site, "site");
             ValidateEnumerable(ids, "ids");
@@ -76,12 +78,12 @@ namespace StackExchange.StacMan
         /// <summary>
         /// Get all the suggested edits on the site. (API Method: "/suggested-edits")
         /// </summary>
-        Task<StacManResponse<SuggestedEdit>> GetAll(string site, string filter = null, int? page = null, int? pagesize = null, DateTime? fromdate = null, DateTime? todate = null, SuggestedEdits.Sort? sort = null, DateTime? mindate = null, DateTime? maxdate = null, Order? order = null);
+        Task<StacManResponse<SuggestedEdit>> GetAll(string site, string? filter = default, int? page = default, int? pagesize = default, DateTime? fromdate = default, DateTime? todate = default, SuggestedEdits.Sort sort = default, DateTime? mindate = default, DateTime? maxdate = default, Order? order = default);
 
         /// <summary>
         /// Get the suggested edits identified by a set of ids. (API Method: "/suggested-edits/{ids}")
         /// </summary>
-        Task<StacManResponse<SuggestedEdit>> GetByIds(string site, IEnumerable<int> ids, string filter = null, int? page = null, int? pagesize = null, DateTime? fromdate = null, DateTime? todate = null, SuggestedEdits.Sort? sort = null, DateTime? mindate = null, DateTime? maxdate = null, Order? order = null);
+        Task<StacManResponse<SuggestedEdit>> GetByIds(string site, IEnumerable<int> ids, string? filter = default, int? page = default, int? pagesize = default, DateTime? fromdate = default, DateTime? todate = default, SuggestedEdits.Sort sort = default, DateTime? mindate = default, DateTime? maxdate = default, Order? order = default);
 
     }
 }

@@ -10,6 +10,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 
+#nullable enable
+
 namespace StackExchange.StacMan
 {
     public partial class StacManClient : IAnswerMethods
@@ -22,7 +24,7 @@ namespace StackExchange.StacMan
             get { return this; }
         }
 
-        Task<StacManResponse<Answer>> IAnswerMethods.GetAll(string site, string filter, int? page, int? pagesize, DateTime? fromdate, DateTime? todate, Answers.Sort? sort, DateTime? mindate, DateTime? maxdate, int? min, int? max, Order? order)
+        Task<StacManResponse<Answer>> IAnswerMethods.GetAll(string site, string? filter, int? page, int? pagesize, DateTime? fromdate, DateTime? todate, Answers.Sort sort, DateTime? mindate, DateTime? maxdate, int? min, int? max, Order? order)
         {
             ValidateString(site, "site");
             ValidatePaging(page, pagesize);
@@ -46,7 +48,7 @@ namespace StackExchange.StacMan
             return CreateApiTask<Answer>(ub, HttpMethod.GET, "/answers");
         }
 
-        Task<StacManResponse<Answer>> IAnswerMethods.GetByIds(string site, IEnumerable<int> ids, string filter, int? page, int? pagesize, DateTime? fromdate, DateTime? todate, Answers.Sort? sort, DateTime? mindate, DateTime? maxdate, int? min, int? max, Order? order)
+        Task<StacManResponse<Answer>> IAnswerMethods.GetByIds(string site, IEnumerable<int> ids, string? filter, int? page, int? pagesize, DateTime? fromdate, DateTime? todate, Answers.Sort sort, DateTime? mindate, DateTime? maxdate, int? min, int? max, Order? order)
         {
             ValidateString(site, "site");
             ValidateEnumerable(ids, "ids");
@@ -71,7 +73,7 @@ namespace StackExchange.StacMan
             return CreateApiTask<Answer>(ub, HttpMethod.GET, "/answers/{ids}");
         }
 
-        Task<StacManResponse<Comment>> IAnswerMethods.GetComments(string site, IEnumerable<int> ids, string filter, int? page, int? pagesize, DateTime? fromdate, DateTime? todate, Comments.Sort? sort, DateTime? mindate, DateTime? maxdate, int? min, int? max, Order? order)
+        Task<StacManResponse<Comment>> IAnswerMethods.GetComments(string site, IEnumerable<int> ids, string? filter, int? page, int? pagesize, DateTime? fromdate, DateTime? todate, Comments.Sort sort, DateTime? mindate, DateTime? maxdate, int? min, int? max, Order? order)
         {
             ValidateString(site, "site");
             ValidateEnumerable(ids, "ids");
@@ -105,17 +107,17 @@ namespace StackExchange.StacMan
         /// <summary>
         /// Get all answers on the site. (API Method: "/answers")
         /// </summary>
-        Task<StacManResponse<Answer>> GetAll(string site, string filter = null, int? page = null, int? pagesize = null, DateTime? fromdate = null, DateTime? todate = null, Answers.Sort? sort = null, DateTime? mindate = null, DateTime? maxdate = null, int? min = null, int? max = null, Order? order = null);
+        Task<StacManResponse<Answer>> GetAll(string site, string? filter = default, int? page = default, int? pagesize = default, DateTime? fromdate = default, DateTime? todate = default, Answers.Sort sort = default, DateTime? mindate = default, DateTime? maxdate = default, int? min = default, int? max = default, Order? order = default);
 
         /// <summary>
         /// Get answers identified by a set of ids. (API Method: "/answers/{ids}")
         /// </summary>
-        Task<StacManResponse<Answer>> GetByIds(string site, IEnumerable<int> ids, string filter = null, int? page = null, int? pagesize = null, DateTime? fromdate = null, DateTime? todate = null, Answers.Sort? sort = null, DateTime? mindate = null, DateTime? maxdate = null, int? min = null, int? max = null, Order? order = null);
+        Task<StacManResponse<Answer>> GetByIds(string site, IEnumerable<int> ids, string? filter = default, int? page = default, int? pagesize = default, DateTime? fromdate = default, DateTime? todate = default, Answers.Sort sort = default, DateTime? mindate = default, DateTime? maxdate = default, int? min = default, int? max = default, Order? order = default);
 
         /// <summary>
         /// Get comments on the answers identified by a set of ids. (API Method: "/answers/{ids}/comments")
         /// </summary>
-        Task<StacManResponse<Comment>> GetComments(string site, IEnumerable<int> ids, string filter = null, int? page = null, int? pagesize = null, DateTime? fromdate = null, DateTime? todate = null, Comments.Sort? sort = null, DateTime? mindate = null, DateTime? maxdate = null, int? min = null, int? max = null, Order? order = null);
+        Task<StacManResponse<Comment>> GetComments(string site, IEnumerable<int> ids, string? filter = default, int? page = default, int? pagesize = default, DateTime? fromdate = default, DateTime? todate = default, Comments.Sort sort = default, DateTime? mindate = default, DateTime? maxdate = default, int? min = default, int? max = default, Order? order = default);
 
     }
 }

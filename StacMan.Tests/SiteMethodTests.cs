@@ -20,6 +20,7 @@ namespace StackExchange.StacMan.Tests
 
             var result = client.Sites.GetAll(filter: "default", page: 1, pagesize: 1).Result;
             Assert.IsTrue(result.Success);
+            Assert.IsNotNull(result.Data);
 
             var site = result.Data.Items.Single();
 

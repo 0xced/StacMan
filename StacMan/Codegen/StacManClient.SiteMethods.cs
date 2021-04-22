@@ -10,6 +10,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 
+#nullable enable
+
 namespace StackExchange.StacMan
 {
     public partial class StacManClient : ISiteMethods
@@ -22,7 +24,7 @@ namespace StackExchange.StacMan
             get { return this; }
         }
 
-        Task<StacManResponse<Site>> ISiteMethods.GetAll(string filter, int? page, int? pagesize)
+        Task<StacManResponse<Site>> ISiteMethods.GetAll(string? filter, int? page, int? pagesize)
         {
             ValidatePaging(page, pagesize);
 
@@ -44,7 +46,7 @@ namespace StackExchange.StacMan
         /// <summary>
         /// Get all the sites in the Stack Exchange network. (API Method: "/sites")
         /// </summary>
-        Task<StacManResponse<Site>> GetAll(string filter = null, int? page = null, int? pagesize = null);
+        Task<StacManResponse<Site>> GetAll(string? filter = default, int? page = default, int? pagesize = default);
 
     }
 }

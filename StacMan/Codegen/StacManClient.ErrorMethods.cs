@@ -10,6 +10,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 
+#nullable enable
+
 namespace StackExchange.StacMan
 {
     public partial class StacManClient : IErrorMethods
@@ -22,7 +24,7 @@ namespace StackExchange.StacMan
             get { return this; }
         }
 
-        Task<StacManResponse<Error>> IErrorMethods.GetAll(string filter, int? page, int? pagesize)
+        Task<StacManResponse<Error>> IErrorMethods.GetAll(string? filter, int? page, int? pagesize)
         {
             ValidatePaging(page, pagesize);
 
@@ -35,7 +37,7 @@ namespace StackExchange.StacMan
             return CreateApiTask<Error>(ub, HttpMethod.GET, "/errors");
         }
 
-        Task<StacManResponse<Error>> IErrorMethods.Simulate(int id, string filter)
+        Task<StacManResponse<Error>> IErrorMethods.Simulate(int id, string? filter)
         {
 
             var ub = new ApiUrlBuilder(Version, String.Format("/errors/{0}", id), useHttps: false);
@@ -54,12 +56,12 @@ namespace StackExchange.StacMan
         /// <summary>
         /// Get descriptions of all the errors that the API could return. (API Method: "/errors")
         /// </summary>
-        Task<StacManResponse<Error>> GetAll(string filter = null, int? page = null, int? pagesize = null);
+        Task<StacManResponse<Error>> GetAll(string? filter = default, int? page = default, int? pagesize = default);
 
         /// <summary>
         /// Simulate an API error for testing purposes. (API Method: "/errors/{id}")
         /// </summary>
-        Task<StacManResponse<Error>> Simulate(int id, string filter = null);
+        Task<StacManResponse<Error>> Simulate(int id, string? filter = default);
 
     }
 }

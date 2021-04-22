@@ -10,6 +10,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 
+#nullable enable
+
 namespace StackExchange.StacMan
 {
     public partial class StacManClient : IQuestionMethods
@@ -22,7 +24,7 @@ namespace StackExchange.StacMan
             get { return this; }
         }
 
-        Task<StacManResponse<Question>> IQuestionMethods.GetAll(string site, string filter, int? page, int? pagesize, DateTime? fromdate, DateTime? todate, Questions.AllSort? sort, DateTime? mindate, DateTime? maxdate, int? min, int? max, Order? order, string tagged)
+        Task<StacManResponse<Question>> IQuestionMethods.GetAll(string site, string? filter, int? page, int? pagesize, DateTime? fromdate, DateTime? todate, Questions.AllSort sort, DateTime? mindate, DateTime? maxdate, int? min, int? max, Order? order, string? tagged)
         {
             ValidateString(site, "site");
             ValidatePaging(page, pagesize);
@@ -47,7 +49,7 @@ namespace StackExchange.StacMan
             return CreateApiTask<Question>(ub, HttpMethod.GET, "/questions");
         }
 
-        Task<StacManResponse<Question>> IQuestionMethods.GetByIds(string site, IEnumerable<int> ids, string filter, int? page, int? pagesize, DateTime? fromdate, DateTime? todate, Questions.Sort? sort, DateTime? mindate, DateTime? maxdate, int? min, int? max, Order? order)
+        Task<StacManResponse<Question>> IQuestionMethods.GetByIds(string site, IEnumerable<int> ids, string? filter, int? page, int? pagesize, DateTime? fromdate, DateTime? todate, Questions.Sort sort, DateTime? mindate, DateTime? maxdate, int? min, int? max, Order? order)
         {
             ValidateString(site, "site");
             ValidateEnumerable(ids, "ids");
@@ -72,7 +74,7 @@ namespace StackExchange.StacMan
             return CreateApiTask<Question>(ub, HttpMethod.GET, "/questions/{ids}");
         }
 
-        Task<StacManResponse<Answer>> IQuestionMethods.GetAnswers(string site, IEnumerable<int> ids, string filter, int? page, int? pagesize, DateTime? fromdate, DateTime? todate, Answers.Sort? sort, DateTime? mindate, DateTime? maxdate, int? min, int? max, Order? order)
+        Task<StacManResponse<Answer>> IQuestionMethods.GetAnswers(string site, IEnumerable<int> ids, string? filter, int? page, int? pagesize, DateTime? fromdate, DateTime? todate, Answers.Sort sort, DateTime? mindate, DateTime? maxdate, int? min, int? max, Order? order)
         {
             ValidateString(site, "site");
             ValidateEnumerable(ids, "ids");
@@ -97,7 +99,7 @@ namespace StackExchange.StacMan
             return CreateApiTask<Answer>(ub, HttpMethod.GET, "/questions/{ids}/answers");
         }
 
-        Task<StacManResponse<Comment>> IQuestionMethods.GetComments(string site, IEnumerable<int> ids, string filter, int? page, int? pagesize, DateTime? fromdate, DateTime? todate, Comments.Sort? sort, DateTime? mindate, DateTime? maxdate, int? min, int? max, Order? order)
+        Task<StacManResponse<Comment>> IQuestionMethods.GetComments(string site, IEnumerable<int> ids, string? filter, int? page, int? pagesize, DateTime? fromdate, DateTime? todate, Comments.Sort sort, DateTime? mindate, DateTime? maxdate, int? min, int? max, Order? order)
         {
             ValidateString(site, "site");
             ValidateEnumerable(ids, "ids");
@@ -122,7 +124,7 @@ namespace StackExchange.StacMan
             return CreateApiTask<Comment>(ub, HttpMethod.GET, "/questions/{ids}/comments");
         }
 
-        Task<StacManResponse<Question>> IQuestionMethods.GetLinked(string site, IEnumerable<int> ids, string filter, int? page, int? pagesize, DateTime? fromdate, DateTime? todate, Questions.RelatedSort? sort, DateTime? mindate, DateTime? maxdate, int? min, int? max, Order? order)
+        Task<StacManResponse<Question>> IQuestionMethods.GetLinked(string site, IEnumerable<int> ids, string? filter, int? page, int? pagesize, DateTime? fromdate, DateTime? todate, Questions.RelatedSort sort, DateTime? mindate, DateTime? maxdate, int? min, int? max, Order? order)
         {
             ValidateString(site, "site");
             ValidateEnumerable(ids, "ids");
@@ -147,7 +149,7 @@ namespace StackExchange.StacMan
             return CreateApiTask<Question>(ub, HttpMethod.GET, "/questions/{ids}/linked");
         }
 
-        Task<StacManResponse<Question>> IQuestionMethods.GetRelated(string site, IEnumerable<int> ids, string filter, int? page, int? pagesize, DateTime? fromdate, DateTime? todate, Questions.RelatedSort? sort, DateTime? mindate, DateTime? maxdate, int? min, int? max, Order? order)
+        Task<StacManResponse<Question>> IQuestionMethods.GetRelated(string site, IEnumerable<int> ids, string? filter, int? page, int? pagesize, DateTime? fromdate, DateTime? todate, Questions.RelatedSort sort, DateTime? mindate, DateTime? maxdate, int? min, int? max, Order? order)
         {
             ValidateString(site, "site");
             ValidateEnumerable(ids, "ids");
@@ -172,7 +174,7 @@ namespace StackExchange.StacMan
             return CreateApiTask<Question>(ub, HttpMethod.GET, "/questions/{ids}/related");
         }
 
-        Task<StacManResponse<QuestionTimeline>> IQuestionMethods.GetTimelines(string site, IEnumerable<int> ids, string filter, int? page, int? pagesize, DateTime? fromdate, DateTime? todate)
+        Task<StacManResponse<QuestionTimeline>> IQuestionMethods.GetTimelines(string site, IEnumerable<int> ids, string? filter, int? page, int? pagesize, DateTime? fromdate, DateTime? todate)
         {
             ValidateString(site, "site");
             ValidateEnumerable(ids, "ids");
@@ -190,7 +192,7 @@ namespace StackExchange.StacMan
             return CreateApiTask<QuestionTimeline>(ub, HttpMethod.GET, "/questions/{ids}/timeline");
         }
 
-        Task<StacManResponse<Question>> IQuestionMethods.GetFeatured(string site, string filter, int? page, int? pagesize, DateTime? fromdate, DateTime? todate, Questions.Sort? sort, DateTime? mindate, DateTime? maxdate, int? min, int? max, Order? order, string tagged)
+        Task<StacManResponse<Question>> IQuestionMethods.GetFeatured(string site, string? filter, int? page, int? pagesize, DateTime? fromdate, DateTime? todate, Questions.Sort sort, DateTime? mindate, DateTime? maxdate, int? min, int? max, Order? order, string? tagged)
         {
             ValidateString(site, "site");
             ValidatePaging(page, pagesize);
@@ -215,7 +217,7 @@ namespace StackExchange.StacMan
             return CreateApiTask<Question>(ub, HttpMethod.GET, "/questions/featured");
         }
 
-        Task<StacManResponse<Question>> IQuestionMethods.GetUnanswered(string site, string filter, int? page, int? pagesize, DateTime? fromdate, DateTime? todate, Questions.Sort? sort, DateTime? mindate, DateTime? maxdate, int? min, int? max, Order? order, string tagged)
+        Task<StacManResponse<Question>> IQuestionMethods.GetUnanswered(string site, string? filter, int? page, int? pagesize, DateTime? fromdate, DateTime? todate, Questions.Sort sort, DateTime? mindate, DateTime? maxdate, int? min, int? max, Order? order, string? tagged)
         {
             ValidateString(site, "site");
             ValidatePaging(page, pagesize);
@@ -240,7 +242,7 @@ namespace StackExchange.StacMan
             return CreateApiTask<Question>(ub, HttpMethod.GET, "/questions/unanswered");
         }
 
-        Task<StacManResponse<Question>> IQuestionMethods.GetWithNoAnswers(string site, string filter, int? page, int? pagesize, DateTime? fromdate, DateTime? todate, Questions.Sort? sort, DateTime? mindate, DateTime? maxdate, int? min, int? max, Order? order, string tagged)
+        Task<StacManResponse<Question>> IQuestionMethods.GetWithNoAnswers(string site, string? filter, int? page, int? pagesize, DateTime? fromdate, DateTime? todate, Questions.Sort sort, DateTime? mindate, DateTime? maxdate, int? min, int? max, Order? order, string? tagged)
         {
             ValidateString(site, "site");
             ValidatePaging(page, pagesize);
@@ -274,52 +276,52 @@ namespace StackExchange.StacMan
         /// <summary>
         /// Get all questions on the site. (API Method: "/questions")
         /// </summary>
-        Task<StacManResponse<Question>> GetAll(string site, string filter = null, int? page = null, int? pagesize = null, DateTime? fromdate = null, DateTime? todate = null, Questions.AllSort? sort = null, DateTime? mindate = null, DateTime? maxdate = null, int? min = null, int? max = null, Order? order = null, string tagged = null);
+        Task<StacManResponse<Question>> GetAll(string site, string? filter = default, int? page = default, int? pagesize = default, DateTime? fromdate = default, DateTime? todate = default, Questions.AllSort sort = default, DateTime? mindate = default, DateTime? maxdate = default, int? min = default, int? max = default, Order? order = default, string? tagged = default);
 
         /// <summary>
         /// Get the questions identified by a set of ids. (API Method: "/questions/{ids}")
         /// </summary>
-        Task<StacManResponse<Question>> GetByIds(string site, IEnumerable<int> ids, string filter = null, int? page = null, int? pagesize = null, DateTime? fromdate = null, DateTime? todate = null, Questions.Sort? sort = null, DateTime? mindate = null, DateTime? maxdate = null, int? min = null, int? max = null, Order? order = null);
+        Task<StacManResponse<Question>> GetByIds(string site, IEnumerable<int> ids, string? filter = default, int? page = default, int? pagesize = default, DateTime? fromdate = default, DateTime? todate = default, Questions.Sort sort = default, DateTime? mindate = default, DateTime? maxdate = default, int? min = default, int? max = default, Order? order = default);
 
         /// <summary>
         /// Get the answers to the questions identified by a set of ids. (API Method: "/questions/{ids}/answers")
         /// </summary>
-        Task<StacManResponse<Answer>> GetAnswers(string site, IEnumerable<int> ids, string filter = null, int? page = null, int? pagesize = null, DateTime? fromdate = null, DateTime? todate = null, Answers.Sort? sort = null, DateTime? mindate = null, DateTime? maxdate = null, int? min = null, int? max = null, Order? order = null);
+        Task<StacManResponse<Answer>> GetAnswers(string site, IEnumerable<int> ids, string? filter = default, int? page = default, int? pagesize = default, DateTime? fromdate = default, DateTime? todate = default, Answers.Sort sort = default, DateTime? mindate = default, DateTime? maxdate = default, int? min = default, int? max = default, Order? order = default);
 
         /// <summary>
         /// Get the comments on the questions identified by a set of ids. (API Method: "/questions/{ids}/comments")
         /// </summary>
-        Task<StacManResponse<Comment>> GetComments(string site, IEnumerable<int> ids, string filter = null, int? page = null, int? pagesize = null, DateTime? fromdate = null, DateTime? todate = null, Comments.Sort? sort = null, DateTime? mindate = null, DateTime? maxdate = null, int? min = null, int? max = null, Order? order = null);
+        Task<StacManResponse<Comment>> GetComments(string site, IEnumerable<int> ids, string? filter = default, int? page = default, int? pagesize = default, DateTime? fromdate = default, DateTime? todate = default, Comments.Sort sort = default, DateTime? mindate = default, DateTime? maxdate = default, int? min = default, int? max = default, Order? order = default);
 
         /// <summary>
         /// Get the questions that link to the questions identified by a set of ids. (API Method: "/questions/{ids}/linked")
         /// </summary>
-        Task<StacManResponse<Question>> GetLinked(string site, IEnumerable<int> ids, string filter = null, int? page = null, int? pagesize = null, DateTime? fromdate = null, DateTime? todate = null, Questions.RelatedSort? sort = null, DateTime? mindate = null, DateTime? maxdate = null, int? min = null, int? max = null, Order? order = null);
+        Task<StacManResponse<Question>> GetLinked(string site, IEnumerable<int> ids, string? filter = default, int? page = default, int? pagesize = default, DateTime? fromdate = default, DateTime? todate = default, Questions.RelatedSort sort = default, DateTime? mindate = default, DateTime? maxdate = default, int? min = default, int? max = default, Order? order = default);
 
         /// <summary>
         /// Get the questions that are related to the questions identified by a set of ids. (API Method: "/questions/{ids}/related")
         /// </summary>
-        Task<StacManResponse<Question>> GetRelated(string site, IEnumerable<int> ids, string filter = null, int? page = null, int? pagesize = null, DateTime? fromdate = null, DateTime? todate = null, Questions.RelatedSort? sort = null, DateTime? mindate = null, DateTime? maxdate = null, int? min = null, int? max = null, Order? order = null);
+        Task<StacManResponse<Question>> GetRelated(string site, IEnumerable<int> ids, string? filter = default, int? page = default, int? pagesize = default, DateTime? fromdate = default, DateTime? todate = default, Questions.RelatedSort sort = default, DateTime? mindate = default, DateTime? maxdate = default, int? min = default, int? max = default, Order? order = default);
 
         /// <summary>
         /// Get the timelines of the questions identified by a set of ids. (API Method: "/questions/{ids}/timeline")
         /// </summary>
-        Task<StacManResponse<QuestionTimeline>> GetTimelines(string site, IEnumerable<int> ids, string filter = null, int? page = null, int? pagesize = null, DateTime? fromdate = null, DateTime? todate = null);
+        Task<StacManResponse<QuestionTimeline>> GetTimelines(string site, IEnumerable<int> ids, string? filter = default, int? page = default, int? pagesize = default, DateTime? fromdate = default, DateTime? todate = default);
 
         /// <summary>
         /// Get all questions on the site with active bounties. (API Method: "/questions/featured")
         /// </summary>
-        Task<StacManResponse<Question>> GetFeatured(string site, string filter = null, int? page = null, int? pagesize = null, DateTime? fromdate = null, DateTime? todate = null, Questions.Sort? sort = null, DateTime? mindate = null, DateTime? maxdate = null, int? min = null, int? max = null, Order? order = null, string tagged = null);
+        Task<StacManResponse<Question>> GetFeatured(string site, string? filter = default, int? page = default, int? pagesize = default, DateTime? fromdate = default, DateTime? todate = default, Questions.Sort sort = default, DateTime? mindate = default, DateTime? maxdate = default, int? min = default, int? max = default, Order? order = default, string? tagged = default);
 
         /// <summary>
         /// Get all questions the site considers unanswered. (API Method: "/questions/unanswered")
         /// </summary>
-        Task<StacManResponse<Question>> GetUnanswered(string site, string filter = null, int? page = null, int? pagesize = null, DateTime? fromdate = null, DateTime? todate = null, Questions.Sort? sort = null, DateTime? mindate = null, DateTime? maxdate = null, int? min = null, int? max = null, Order? order = null, string tagged = null);
+        Task<StacManResponse<Question>> GetUnanswered(string site, string? filter = default, int? page = default, int? pagesize = default, DateTime? fromdate = default, DateTime? todate = default, Questions.Sort sort = default, DateTime? mindate = default, DateTime? maxdate = default, int? min = default, int? max = default, Order? order = default, string? tagged = default);
 
         /// <summary>
         /// Get all questions on the site with no answers. (API Method: "/questions/no-answers")
         /// </summary>
-        Task<StacManResponse<Question>> GetWithNoAnswers(string site, string filter = null, int? page = null, int? pagesize = null, DateTime? fromdate = null, DateTime? todate = null, Questions.Sort? sort = null, DateTime? mindate = null, DateTime? maxdate = null, int? min = null, int? max = null, Order? order = null, string tagged = null);
+        Task<StacManResponse<Question>> GetWithNoAnswers(string site, string? filter = default, int? page = default, int? pagesize = default, DateTime? fromdate = default, DateTime? todate = default, Questions.Sort sort = default, DateTime? mindate = default, DateTime? maxdate = default, int? min = default, int? max = default, Order? order = default, string? tagged = default);
 
     }
 }

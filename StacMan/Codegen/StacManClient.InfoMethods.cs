@@ -10,6 +10,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 
+#nullable enable
+
 namespace StackExchange.StacMan
 {
     public partial class StacManClient : IInfoMethods
@@ -22,7 +24,7 @@ namespace StackExchange.StacMan
             get { return this; }
         }
 
-        Task<StacManResponse<Info>> IInfoMethods.Get(string site, string filter)
+        Task<StacManResponse<Info>> IInfoMethods.Get(string site, string? filter)
         {
             ValidateString(site, "site");
 
@@ -43,7 +45,7 @@ namespace StackExchange.StacMan
         /// <summary>
         /// Get information about the entire site. (API Method: "/info")
         /// </summary>
-        Task<StacManResponse<Info>> Get(string site, string filter = null);
+        Task<StacManResponse<Info>> Get(string site, string? filter = default);
 
     }
 }

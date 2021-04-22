@@ -21,6 +21,7 @@ namespace StackExchange.StacMan.Tests
 
             var result = client.Questions.GetAll("gaming", pagesize: 1, fromdate: new DateTime(2012, 2, 1, 0, 0, 0, DateTimeKind.Utc), order: Order.Desc, sort: Questions.AllSort.Activity, tagged: "starcraft-2").Result;
             Assert.IsTrue(result.Success);
+            Assert.IsNotNull(result.Data);
 
             var question = result.Data.Items.Single();
             Assert.AreEqual(1334545016L.ToDateTime(), question.LastEditDate);
@@ -54,6 +55,7 @@ namespace StackExchange.StacMan.Tests
 
             var result = client.Questions.GetByIds("gaming", new[] { 13332 }, order: Order.Desc, sort: Questions.Sort.Activity).Result;
             Assert.IsTrue(result.Success);
+            Assert.IsNotNull(result.Data);
 
             var question = result.Data.Items.Single();
             Assert.AreEqual(13332, question.QuestionId);

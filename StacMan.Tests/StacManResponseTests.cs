@@ -21,7 +21,6 @@ namespace StackExchange.StacMan.Tests
             Assert.IsNull(response.Data);
             Assert.IsInstanceOfType(response.Error, typeof(System.Net.WebException));
             Assert.IsFalse(response.ReceivedApiResponse);
-            Assert.IsNotNull(response.ApiUrl);
             Assert.IsNull(response.RawData);
         }
 
@@ -57,7 +56,9 @@ namespace StackExchange.StacMan.Tests
 
             Assert.IsFalse(response.Success);
             Assert.IsTrue(response.ReceivedApiResponse);
+            Assert.IsNotNull(response.Data);
             Assert.IsNotNull(response.RawData);
+            Assert.IsNotNull(response.Error);
             Assert.IsInstanceOfType(response.Error, typeof(Exceptions.StackExchangeApiException));
             Assert.AreEqual(405, ((Exceptions.StackExchangeApiException)response.Error).ErrorId);
             Assert.AreEqual("key_required", ((Exceptions.StackExchangeApiException)response.Error).ErrorName);

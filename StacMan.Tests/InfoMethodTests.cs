@@ -1,4 +1,4 @@
-﻿using System.Linq;
+using System.Linq;
 using StackExchange.StacMan.Tests.Utilities;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
@@ -20,6 +20,7 @@ namespace StackExchange.StacMan.Tests
 
             var result = client.Info.Get("english").Result;
             Assert.IsTrue(result.Success);
+            Assert.IsNotNull(result.Data);
             
             var info = result.Data.Items.Single();
             Assert.AreEqual(14647, info.TotalQuestions);

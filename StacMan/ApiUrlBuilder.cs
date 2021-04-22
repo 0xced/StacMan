@@ -17,7 +17,7 @@ namespace StackExchange.StacMan
         public readonly string BaseUrl;
         private readonly NameValueCollection QueryStringParameters;
         
-        public void AddParameter(string name, object value)
+        public void AddParameter(string name, object? value)
         {
             if (value != null)
                 QueryStringParameters.Add(name, value.ToString());
@@ -29,7 +29,7 @@ namespace StackExchange.StacMan
                 AddParameter(name, dt.Value.ToUnixTime());
         }
 
-        public void AddParameter(string name, IEnumerable<string> values)
+        public void AddParameter(string name, IEnumerable<string>? values)
         {
             if (values != null && values.Any())
                 AddParameter(name, String.Join(";", values));

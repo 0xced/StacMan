@@ -146,7 +146,7 @@
                 "id": "int"
             },
             "optional": {
-                "preview": "bool?"
+                "preview": "bool"
             }
         },
         "Edit": {
@@ -160,7 +160,7 @@
                 "body": "string"
             },
             "optional": {
-                "preview": "bool?"
+                "preview": "bool"
             }
         }
     },
@@ -187,7 +187,7 @@
             "authRequired": true,
             "hasPaging": true,
             "optional": {
-                "since": "DateTime?"
+                "since": "DateTime"
             }
         }
     },
@@ -208,7 +208,7 @@
                 "include": "IEnumerable<string>",
                 "exclude": "IEnumerable<string>",
                 "base": "string",
-                "unsafe": "bool?"
+                "unsafe": "bool"
             }
         }
     },
@@ -228,7 +228,7 @@
             "authRequired": true,
             "hasPaging": true,
             "optional": {
-                "since": "DateTime?"
+                "since": "DateTime"
             },
             "returnType": "InboxItem"
         }
@@ -297,7 +297,7 @@
                 "body": "string"
             },
             "optional": {
-                "preview": "bool?"
+                "preview": "bool"
             },
             "returnType": "Comment"
         },
@@ -468,19 +468,19 @@
             "sortType": "Questions.SearchSort",
             "optional": {
                 "q": "string",
-                "accepted": "bool?",
-                "answers": "int?",
+                "accepted": "bool",
+                "answers": "int",
                 "body": "string",
-                "closed": "bool?",
-                "migrated": "bool?",
-                "notice": "bool?",
+                "closed": "bool",
+                "migrated": "bool",
+                "notice": "bool",
                 "nottagged": "string",
                 "tagged": "string",
                 "title": "string",
-                "user": "int?",
+                "user": "int",
                 "url": "string",
-                "views": "int?",
-                "wiki": "bool?"
+                "views": "int",
+                "wiki": "bool"
             },
             "returnType": "Question"
         },
@@ -1225,7 +1225,7 @@
             "authRequired": true,
             "hasPaging": true,
             "optional": {
-                "since": "DateTime?"
+                "since": "DateTime"
             },
             "required": {
                 "id": "int"
@@ -1238,7 +1238,7 @@
             "authRequired": true,
             "hasPaging": true,
             "optional": {
-                "since": "DateTime?"
+                "since": "DateTime"
             },
             "returnType": "InboxItem"
         },

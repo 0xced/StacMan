@@ -10,6 +10,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 
+#nullable enable
+
 namespace StackExchange.StacMan
 {
     public partial class StacManClient : IUserMethods
@@ -22,7 +24,7 @@ namespace StackExchange.StacMan
             get { return this; }
         }
 
-        Task<StacManResponse<User>> IUserMethods.GetAll(string site, string filter, int? page, int? pagesize, DateTime? fromdate, DateTime? todate, Users.Sort? sort, int? min, int? max, DateTime? mindate, DateTime? maxdate, string minname, string maxname, Order? order, string inname)
+        Task<StacManResponse<User>> IUserMethods.GetAll(string site, string? filter, int? page, int? pagesize, DateTime? fromdate, DateTime? todate, Users.Sort sort, int? min, int? max, DateTime? mindate, DateTime? maxdate, string? minname, string? maxname, Order? order, string? inname)
         {
             ValidateString(site, "site");
             ValidatePaging(page, pagesize);
@@ -49,7 +51,7 @@ namespace StackExchange.StacMan
             return CreateApiTask<User>(ub, HttpMethod.GET, "/users");
         }
 
-        Task<StacManResponse<User>> IUserMethods.GetByIds(string site, IEnumerable<int> ids, string filter, int? page, int? pagesize, DateTime? fromdate, DateTime? todate, Users.Sort? sort, int? min, int? max, DateTime? mindate, DateTime? maxdate, string minname, string maxname, Order? order)
+        Task<StacManResponse<User>> IUserMethods.GetByIds(string site, IEnumerable<int> ids, string? filter, int? page, int? pagesize, DateTime? fromdate, DateTime? todate, Users.Sort sort, int? min, int? max, DateTime? mindate, DateTime? maxdate, string? minname, string? maxname, Order? order)
         {
             ValidateString(site, "site");
             ValidateEnumerable(ids, "ids");
@@ -76,7 +78,7 @@ namespace StackExchange.StacMan
             return CreateApiTask<User>(ub, HttpMethod.GET, "/_users");
         }
 
-        Task<StacManResponse<User>> IUserMethods.GetMe(string site, string access_token, string filter, int? page, int? pagesize, DateTime? fromdate, DateTime? todate, Users.Sort? sort, int? min, int? max, DateTime? mindate, DateTime? maxdate, string minname, string maxname, Order? order)
+        Task<StacManResponse<User>> IUserMethods.GetMe(string site, string access_token, string? filter, int? page, int? pagesize, DateTime? fromdate, DateTime? todate, Users.Sort sort, int? min, int? max, DateTime? mindate, DateTime? maxdate, string? minname, string? maxname, Order? order)
         {
             ValidateString(site, "site");
             ValidateString(access_token, "access_token");
@@ -104,7 +106,7 @@ namespace StackExchange.StacMan
             return CreateApiTask<User>(ub, HttpMethod.GET, "/_users");
         }
 
-        Task<StacManResponse<Answer>> IUserMethods.GetAnswers(string site, IEnumerable<int> ids, string filter, int? page, int? pagesize, DateTime? fromdate, DateTime? todate, Answers.Sort? sort, DateTime? mindate, DateTime? maxdate, int? min, int? max, Order? order)
+        Task<StacManResponse<Answer>> IUserMethods.GetAnswers(string site, IEnumerable<int> ids, string? filter, int? page, int? pagesize, DateTime? fromdate, DateTime? todate, Answers.Sort sort, DateTime? mindate, DateTime? maxdate, int? min, int? max, Order? order)
         {
             ValidateString(site, "site");
             ValidateEnumerable(ids, "ids");
@@ -129,7 +131,7 @@ namespace StackExchange.StacMan
             return CreateApiTask<Answer>(ub, HttpMethod.GET, "/_users/answers");
         }
 
-        Task<StacManResponse<Answer>> IUserMethods.GetMyAnswers(string site, string access_token, string filter, int? page, int? pagesize, DateTime? fromdate, DateTime? todate, Answers.Sort? sort, DateTime? mindate, DateTime? maxdate, int? min, int? max, Order? order)
+        Task<StacManResponse<Answer>> IUserMethods.GetMyAnswers(string site, string access_token, string? filter, int? page, int? pagesize, DateTime? fromdate, DateTime? todate, Answers.Sort sort, DateTime? mindate, DateTime? maxdate, int? min, int? max, Order? order)
         {
             ValidateString(site, "site");
             ValidateString(access_token, "access_token");
@@ -155,7 +157,7 @@ namespace StackExchange.StacMan
             return CreateApiTask<Answer>(ub, HttpMethod.GET, "/_users/answers");
         }
 
-        Task<StacManResponse<Badge>> IUserMethods.GetBadges(string site, IEnumerable<int> ids, string filter, int? page, int? pagesize, DateTime? fromdate, DateTime? todate, Badges.UserSort? sort, Badges.Rank? minrank, Badges.Rank? maxrank, string minname, string maxname, Badges.BadgeType? mintype, Badges.BadgeType? maxtype, DateTime? mindate, DateTime? maxdate, Order? order)
+        Task<StacManResponse<Badge>> IUserMethods.GetBadges(string site, IEnumerable<int> ids, string? filter, int? page, int? pagesize, DateTime? fromdate, DateTime? todate, Badges.UserSort sort, Badges.Rank? minrank, Badges.Rank? maxrank, string? minname, string? maxname, Badges.BadgeType? mintype, Badges.BadgeType? maxtype, DateTime? mindate, DateTime? maxdate, Order? order)
         {
             ValidateString(site, "site");
             ValidateEnumerable(ids, "ids");
@@ -184,7 +186,7 @@ namespace StackExchange.StacMan
             return CreateApiTask<Badge>(ub, HttpMethod.GET, "/_users/badges");
         }
 
-        Task<StacManResponse<Badge>> IUserMethods.GetMyBadges(string site, string access_token, string filter, int? page, int? pagesize, DateTime? fromdate, DateTime? todate, Badges.UserSort? sort, Badges.Rank? minrank, Badges.Rank? maxrank, string minname, string maxname, Badges.BadgeType? mintype, Badges.BadgeType? maxtype, DateTime? mindate, DateTime? maxdate, Order? order)
+        Task<StacManResponse<Badge>> IUserMethods.GetMyBadges(string site, string access_token, string? filter, int? page, int? pagesize, DateTime? fromdate, DateTime? todate, Badges.UserSort sort, Badges.Rank? minrank, Badges.Rank? maxrank, string? minname, string? maxname, Badges.BadgeType? mintype, Badges.BadgeType? maxtype, DateTime? mindate, DateTime? maxdate, Order? order)
         {
             ValidateString(site, "site");
             ValidateString(access_token, "access_token");
@@ -214,7 +216,7 @@ namespace StackExchange.StacMan
             return CreateApiTask<Badge>(ub, HttpMethod.GET, "/_users/badges");
         }
 
-        Task<StacManResponse<Comment>> IUserMethods.GetComments(string site, IEnumerable<int> ids, string filter, int? page, int? pagesize, DateTime? fromdate, DateTime? todate, Comments.Sort? sort, DateTime? mindate, DateTime? maxdate, int? min, int? max, Order? order)
+        Task<StacManResponse<Comment>> IUserMethods.GetComments(string site, IEnumerable<int> ids, string? filter, int? page, int? pagesize, DateTime? fromdate, DateTime? todate, Comments.Sort sort, DateTime? mindate, DateTime? maxdate, int? min, int? max, Order? order)
         {
             ValidateString(site, "site");
             ValidateEnumerable(ids, "ids");
@@ -239,7 +241,7 @@ namespace StackExchange.StacMan
             return CreateApiTask<Comment>(ub, HttpMethod.GET, "/_users/comments");
         }
 
-        Task<StacManResponse<Comment>> IUserMethods.GetMyComments(string site, string access_token, string filter, int? page, int? pagesize, DateTime? fromdate, DateTime? todate, Comments.Sort? sort, DateTime? mindate, DateTime? maxdate, int? min, int? max, Order? order)
+        Task<StacManResponse<Comment>> IUserMethods.GetMyComments(string site, string access_token, string? filter, int? page, int? pagesize, DateTime? fromdate, DateTime? todate, Comments.Sort sort, DateTime? mindate, DateTime? maxdate, int? min, int? max, Order? order)
         {
             ValidateString(site, "site");
             ValidateString(access_token, "access_token");
@@ -265,7 +267,7 @@ namespace StackExchange.StacMan
             return CreateApiTask<Comment>(ub, HttpMethod.GET, "/_users/comments");
         }
 
-        Task<StacManResponse<Comment>> IUserMethods.GetCommentsToUser(string site, IEnumerable<int> ids, int toid, string filter, int? page, int? pagesize, DateTime? fromdate, DateTime? todate, Comments.Sort? sort, DateTime? mindate, DateTime? maxdate, int? min, int? max, Order? order)
+        Task<StacManResponse<Comment>> IUserMethods.GetCommentsToUser(string site, IEnumerable<int> ids, int toid, string? filter, int? page, int? pagesize, DateTime? fromdate, DateTime? todate, Comments.Sort sort, DateTime? mindate, DateTime? maxdate, int? min, int? max, Order? order)
         {
             ValidateString(site, "site");
             ValidateEnumerable(ids, "ids");
@@ -290,7 +292,7 @@ namespace StackExchange.StacMan
             return CreateApiTask<Comment>(ub, HttpMethod.GET, "/_users/comments/{toid}");
         }
 
-        Task<StacManResponse<Comment>> IUserMethods.GetMyCommentsToUser(string site, string access_token, int toid, string filter, int? page, int? pagesize, DateTime? fromdate, DateTime? todate, Comments.Sort? sort, DateTime? mindate, DateTime? maxdate, int? min, int? max, Order? order)
+        Task<StacManResponse<Comment>> IUserMethods.GetMyCommentsToUser(string site, string access_token, int toid, string? filter, int? page, int? pagesize, DateTime? fromdate, DateTime? todate, Comments.Sort sort, DateTime? mindate, DateTime? maxdate, int? min, int? max, Order? order)
         {
             ValidateString(site, "site");
             ValidateString(access_token, "access_token");
@@ -316,7 +318,7 @@ namespace StackExchange.StacMan
             return CreateApiTask<Comment>(ub, HttpMethod.GET, "/_users/comments/{toid}");
         }
 
-        Task<StacManResponse<Question>> IUserMethods.GetFavorites(string site, IEnumerable<int> ids, string filter, int? page, int? pagesize, DateTime? fromdate, DateTime? todate, Questions.FavoriteSort? sort, DateTime? mindate, DateTime? maxdate, int? min, int? max, Order? order)
+        Task<StacManResponse<Question>> IUserMethods.GetFavorites(string site, IEnumerable<int> ids, string? filter, int? page, int? pagesize, DateTime? fromdate, DateTime? todate, Questions.FavoriteSort sort, DateTime? mindate, DateTime? maxdate, int? min, int? max, Order? order)
         {
             ValidateString(site, "site");
             ValidateEnumerable(ids, "ids");
@@ -341,7 +343,7 @@ namespace StackExchange.StacMan
             return CreateApiTask<Question>(ub, HttpMethod.GET, "/_users/favorites");
         }
 
-        Task<StacManResponse<Question>> IUserMethods.GetMyFavorites(string site, string access_token, string filter, int? page, int? pagesize, DateTime? fromdate, DateTime? todate, Questions.FavoriteSort? sort, DateTime? mindate, DateTime? maxdate, int? min, int? max, Order? order)
+        Task<StacManResponse<Question>> IUserMethods.GetMyFavorites(string site, string access_token, string? filter, int? page, int? pagesize, DateTime? fromdate, DateTime? todate, Questions.FavoriteSort sort, DateTime? mindate, DateTime? maxdate, int? min, int? max, Order? order)
         {
             ValidateString(site, "site");
             ValidateString(access_token, "access_token");
@@ -367,7 +369,7 @@ namespace StackExchange.StacMan
             return CreateApiTask<Question>(ub, HttpMethod.GET, "/_users/favorites");
         }
 
-        Task<StacManResponse<Comment>> IUserMethods.GetCommentsMentionedIn(string site, IEnumerable<int> ids, string filter, int? page, int? pagesize, DateTime? fromdate, DateTime? todate, Comments.Sort? sort, DateTime? mindate, DateTime? maxdate, int? min, int? max, Order? order)
+        Task<StacManResponse<Comment>> IUserMethods.GetCommentsMentionedIn(string site, IEnumerable<int> ids, string? filter, int? page, int? pagesize, DateTime? fromdate, DateTime? todate, Comments.Sort sort, DateTime? mindate, DateTime? maxdate, int? min, int? max, Order? order)
         {
             ValidateString(site, "site");
             ValidateEnumerable(ids, "ids");
@@ -392,7 +394,7 @@ namespace StackExchange.StacMan
             return CreateApiTask<Comment>(ub, HttpMethod.GET, "/_users/mentioned");
         }
 
-        Task<StacManResponse<Comment>> IUserMethods.GetMyCommentsMentionedIn(string site, string access_token, string filter, int? page, int? pagesize, DateTime? fromdate, DateTime? todate, Comments.Sort? sort, DateTime? mindate, DateTime? maxdate, int? min, int? max, Order? order)
+        Task<StacManResponse<Comment>> IUserMethods.GetMyCommentsMentionedIn(string site, string access_token, string? filter, int? page, int? pagesize, DateTime? fromdate, DateTime? todate, Comments.Sort sort, DateTime? mindate, DateTime? maxdate, int? min, int? max, Order? order)
         {
             ValidateString(site, "site");
             ValidateString(access_token, "access_token");
@@ -418,7 +420,7 @@ namespace StackExchange.StacMan
             return CreateApiTask<Comment>(ub, HttpMethod.GET, "/_users/mentioned");
         }
 
-        Task<StacManResponse<AccountMerge>> IUserMethods.GetMerges(IEnumerable<int> ids, string filter, int? page, int? pagesize)
+        Task<StacManResponse<AccountMerge>> IUserMethods.GetMerges(IEnumerable<int> ids, string? filter, int? page, int? pagesize)
         {
             ValidateEnumerable(ids, "ids");
             ValidateMinApiVersion("2.1");
@@ -433,7 +435,7 @@ namespace StackExchange.StacMan
             return CreateApiTask<AccountMerge>(ub, HttpMethod.GET, "/_users/merges");
         }
 
-        Task<StacManResponse<AccountMerge>> IUserMethods.GetMyMerges(string access_token, string filter, int? page, int? pagesize)
+        Task<StacManResponse<AccountMerge>> IUserMethods.GetMyMerges(string access_token, string? filter, int? page, int? pagesize)
         {
             ValidateString(access_token, "access_token");
             ValidateMinApiVersion("2.1");
@@ -449,7 +451,7 @@ namespace StackExchange.StacMan
             return CreateApiTask<AccountMerge>(ub, HttpMethod.GET, "/_users/merges");
         }
 
-        Task<StacManResponse<Notification>> IUserMethods.GetNotifications(string site, string access_token, int id, string filter, int? page, int? pagesize)
+        Task<StacManResponse<Notification>> IUserMethods.GetNotifications(string site, string access_token, int id, string? filter, int? page, int? pagesize)
         {
             ValidateString(site, "site");
             ValidateString(access_token, "access_token");
@@ -467,7 +469,7 @@ namespace StackExchange.StacMan
             return CreateApiTask<Notification>(ub, HttpMethod.GET, "/_users/notifications");
         }
 
-        Task<StacManResponse<Notification>> IUserMethods.GetMyNotifications(string site, string access_token, string filter, int? page, int? pagesize)
+        Task<StacManResponse<Notification>> IUserMethods.GetMyNotifications(string site, string access_token, string? filter, int? page, int? pagesize)
         {
             ValidateString(site, "site");
             ValidateString(access_token, "access_token");
@@ -485,7 +487,7 @@ namespace StackExchange.StacMan
             return CreateApiTask<Notification>(ub, HttpMethod.GET, "/_users/notifications");
         }
 
-        Task<StacManResponse<Notification>> IUserMethods.GetUnreadNotifications(string site, string access_token, int id, string filter, int? page, int? pagesize)
+        Task<StacManResponse<Notification>> IUserMethods.GetUnreadNotifications(string site, string access_token, int id, string? filter, int? page, int? pagesize)
         {
             ValidateString(site, "site");
             ValidateString(access_token, "access_token");
@@ -503,7 +505,7 @@ namespace StackExchange.StacMan
             return CreateApiTask<Notification>(ub, HttpMethod.GET, "/_users/notifications/unread");
         }
 
-        Task<StacManResponse<Notification>> IUserMethods.GetMyUnreadNotifications(string site, string access_token, string filter, int? page, int? pagesize)
+        Task<StacManResponse<Notification>> IUserMethods.GetMyUnreadNotifications(string site, string access_token, string? filter, int? page, int? pagesize)
         {
             ValidateString(site, "site");
             ValidateString(access_token, "access_token");
@@ -521,7 +523,7 @@ namespace StackExchange.StacMan
             return CreateApiTask<Notification>(ub, HttpMethod.GET, "/_users/notifications/unread");
         }
 
-        Task<StacManResponse<Privilege>> IUserMethods.GetPrivileges(string site, int id, string filter, int? page, int? pagesize)
+        Task<StacManResponse<Privilege>> IUserMethods.GetPrivileges(string site, int id, string? filter, int? page, int? pagesize)
         {
             ValidateString(site, "site");
             ValidatePaging(page, pagesize);
@@ -536,7 +538,7 @@ namespace StackExchange.StacMan
             return CreateApiTask<Privilege>(ub, HttpMethod.GET, "/_users/privileges");
         }
 
-        Task<StacManResponse<Privilege>> IUserMethods.GetMyPrivileges(string site, string access_token, string filter, int? page, int? pagesize)
+        Task<StacManResponse<Privilege>> IUserMethods.GetMyPrivileges(string site, string access_token, string? filter, int? page, int? pagesize)
         {
             ValidateString(site, "site");
             ValidateString(access_token, "access_token");
@@ -553,7 +555,7 @@ namespace StackExchange.StacMan
             return CreateApiTask<Privilege>(ub, HttpMethod.GET, "/_users/privileges");
         }
 
-        Task<StacManResponse<Question>> IUserMethods.GetQuestions(string site, IEnumerable<int> ids, string filter, int? page, int? pagesize, DateTime? fromdate, DateTime? todate, Questions.Sort? sort, DateTime? mindate, DateTime? maxdate, int? min, int? max, Order? order)
+        Task<StacManResponse<Question>> IUserMethods.GetQuestions(string site, IEnumerable<int> ids, string? filter, int? page, int? pagesize, DateTime? fromdate, DateTime? todate, Questions.Sort sort, DateTime? mindate, DateTime? maxdate, int? min, int? max, Order? order)
         {
             ValidateString(site, "site");
             ValidateEnumerable(ids, "ids");
@@ -578,7 +580,7 @@ namespace StackExchange.StacMan
             return CreateApiTask<Question>(ub, HttpMethod.GET, "/_users/questions");
         }
 
-        Task<StacManResponse<Question>> IUserMethods.GetMyQuestions(string site, string access_token, string filter, int? page, int? pagesize, DateTime? fromdate, DateTime? todate, Questions.Sort? sort, DateTime? mindate, DateTime? maxdate, int? min, int? max, Order? order)
+        Task<StacManResponse<Question>> IUserMethods.GetMyQuestions(string site, string access_token, string? filter, int? page, int? pagesize, DateTime? fromdate, DateTime? todate, Questions.Sort sort, DateTime? mindate, DateTime? maxdate, int? min, int? max, Order? order)
         {
             ValidateString(site, "site");
             ValidateString(access_token, "access_token");
@@ -604,7 +606,7 @@ namespace StackExchange.StacMan
             return CreateApiTask<Question>(ub, HttpMethod.GET, "/_users/questions");
         }
 
-        Task<StacManResponse<Question>> IUserMethods.GetFeaturedQuestions(string site, IEnumerable<int> ids, string filter, int? page, int? pagesize, DateTime? fromdate, DateTime? todate, Questions.Sort? sort, DateTime? mindate, DateTime? maxdate, int? min, int? max, Order? order)
+        Task<StacManResponse<Question>> IUserMethods.GetFeaturedQuestions(string site, IEnumerable<int> ids, string? filter, int? page, int? pagesize, DateTime? fromdate, DateTime? todate, Questions.Sort sort, DateTime? mindate, DateTime? maxdate, int? min, int? max, Order? order)
         {
             ValidateString(site, "site");
             ValidateEnumerable(ids, "ids");
@@ -629,7 +631,7 @@ namespace StackExchange.StacMan
             return CreateApiTask<Question>(ub, HttpMethod.GET, "/_users/questions/featured");
         }
 
-        Task<StacManResponse<Question>> IUserMethods.GetMyFeaturedQuestions(string site, string access_token, string filter, int? page, int? pagesize, DateTime? fromdate, DateTime? todate, Questions.Sort? sort, DateTime? mindate, DateTime? maxdate, int? min, int? max, Order? order)
+        Task<StacManResponse<Question>> IUserMethods.GetMyFeaturedQuestions(string site, string access_token, string? filter, int? page, int? pagesize, DateTime? fromdate, DateTime? todate, Questions.Sort sort, DateTime? mindate, DateTime? maxdate, int? min, int? max, Order? order)
         {
             ValidateString(site, "site");
             ValidateString(access_token, "access_token");
@@ -655,7 +657,7 @@ namespace StackExchange.StacMan
             return CreateApiTask<Question>(ub, HttpMethod.GET, "/_users/questions/featured");
         }
 
-        Task<StacManResponse<Question>> IUserMethods.GetQuestionsWithNoAnswers(string site, IEnumerable<int> ids, string filter, int? page, int? pagesize, DateTime? fromdate, DateTime? todate, Questions.Sort? sort, DateTime? mindate, DateTime? maxdate, int? min, int? max, Order? order)
+        Task<StacManResponse<Question>> IUserMethods.GetQuestionsWithNoAnswers(string site, IEnumerable<int> ids, string? filter, int? page, int? pagesize, DateTime? fromdate, DateTime? todate, Questions.Sort sort, DateTime? mindate, DateTime? maxdate, int? min, int? max, Order? order)
         {
             ValidateString(site, "site");
             ValidateEnumerable(ids, "ids");
@@ -680,7 +682,7 @@ namespace StackExchange.StacMan
             return CreateApiTask<Question>(ub, HttpMethod.GET, "/_users/questions/featured");
         }
 
-        Task<StacManResponse<Question>> IUserMethods.GetMyQuestionsWithNoAnswers(string site, string access_token, string filter, int? page, int? pagesize, DateTime? fromdate, DateTime? todate, Questions.Sort? sort, DateTime? mindate, DateTime? maxdate, int? min, int? max, Order? order)
+        Task<StacManResponse<Question>> IUserMethods.GetMyQuestionsWithNoAnswers(string site, string access_token, string? filter, int? page, int? pagesize, DateTime? fromdate, DateTime? todate, Questions.Sort sort, DateTime? mindate, DateTime? maxdate, int? min, int? max, Order? order)
         {
             ValidateString(site, "site");
             ValidateString(access_token, "access_token");
@@ -706,7 +708,7 @@ namespace StackExchange.StacMan
             return CreateApiTask<Question>(ub, HttpMethod.GET, "/_users/questions/featured");
         }
 
-        Task<StacManResponse<Question>> IUserMethods.GetQuestionsWithUnaccepted(string site, IEnumerable<int> ids, string filter, int? page, int? pagesize, DateTime? fromdate, DateTime? todate, Questions.Sort? sort, DateTime? mindate, DateTime? maxdate, int? min, int? max, Order? order)
+        Task<StacManResponse<Question>> IUserMethods.GetQuestionsWithUnaccepted(string site, IEnumerable<int> ids, string? filter, int? page, int? pagesize, DateTime? fromdate, DateTime? todate, Questions.Sort sort, DateTime? mindate, DateTime? maxdate, int? min, int? max, Order? order)
         {
             ValidateString(site, "site");
             ValidateEnumerable(ids, "ids");
@@ -731,7 +733,7 @@ namespace StackExchange.StacMan
             return CreateApiTask<Question>(ub, HttpMethod.GET, "/_users/questions/unaccepted");
         }
 
-        Task<StacManResponse<Question>> IUserMethods.GetMyQuestionsWithUnaccepted(string site, string access_token, string filter, int? page, int? pagesize, DateTime? fromdate, DateTime? todate, Questions.Sort? sort, DateTime? mindate, DateTime? maxdate, int? min, int? max, Order? order)
+        Task<StacManResponse<Question>> IUserMethods.GetMyQuestionsWithUnaccepted(string site, string access_token, string? filter, int? page, int? pagesize, DateTime? fromdate, DateTime? todate, Questions.Sort sort, DateTime? mindate, DateTime? maxdate, int? min, int? max, Order? order)
         {
             ValidateString(site, "site");
             ValidateString(access_token, "access_token");
@@ -757,7 +759,7 @@ namespace StackExchange.StacMan
             return CreateApiTask<Question>(ub, HttpMethod.GET, "/_users/questions/unaccepted");
         }
 
-        Task<StacManResponse<Question>> IUserMethods.GetUnansweredQuestions(string site, IEnumerable<int> ids, string filter, int? page, int? pagesize, DateTime? fromdate, DateTime? todate, Questions.Sort? sort, DateTime? mindate, DateTime? maxdate, int? min, int? max, Order? order)
+        Task<StacManResponse<Question>> IUserMethods.GetUnansweredQuestions(string site, IEnumerable<int> ids, string? filter, int? page, int? pagesize, DateTime? fromdate, DateTime? todate, Questions.Sort sort, DateTime? mindate, DateTime? maxdate, int? min, int? max, Order? order)
         {
             ValidateString(site, "site");
             ValidateEnumerable(ids, "ids");
@@ -782,7 +784,7 @@ namespace StackExchange.StacMan
             return CreateApiTask<Question>(ub, HttpMethod.GET, "/_users/questions/unanswered");
         }
 
-        Task<StacManResponse<Question>> IUserMethods.GetMyUnansweredQuestions(string site, string access_token, string filter, int? page, int? pagesize, DateTime? fromdate, DateTime? todate, Questions.Sort? sort, DateTime? mindate, DateTime? maxdate, int? min, int? max, Order? order)
+        Task<StacManResponse<Question>> IUserMethods.GetMyUnansweredQuestions(string site, string access_token, string? filter, int? page, int? pagesize, DateTime? fromdate, DateTime? todate, Questions.Sort sort, DateTime? mindate, DateTime? maxdate, int? min, int? max, Order? order)
         {
             ValidateString(site, "site");
             ValidateString(access_token, "access_token");
@@ -808,7 +810,7 @@ namespace StackExchange.StacMan
             return CreateApiTask<Question>(ub, HttpMethod.GET, "/_users/questions/unanswered");
         }
 
-        Task<StacManResponse<Reputation>> IUserMethods.GetReputation(string site, IEnumerable<int> ids, string filter, int? page, int? pagesize, DateTime? fromdate, DateTime? todate)
+        Task<StacManResponse<Reputation>> IUserMethods.GetReputation(string site, IEnumerable<int> ids, string? filter, int? page, int? pagesize, DateTime? fromdate, DateTime? todate)
         {
             ValidateString(site, "site");
             ValidateEnumerable(ids, "ids");
@@ -826,7 +828,7 @@ namespace StackExchange.StacMan
             return CreateApiTask<Reputation>(ub, HttpMethod.GET, "/_users/reputation");
         }
 
-        Task<StacManResponse<Reputation>> IUserMethods.GetMyReputation(string site, string access_token, string filter)
+        Task<StacManResponse<Reputation>> IUserMethods.GetMyReputation(string site, string access_token, string? filter)
         {
             ValidateString(site, "site");
             ValidateString(access_token, "access_token");
@@ -840,7 +842,7 @@ namespace StackExchange.StacMan
             return CreateApiTask<Reputation>(ub, HttpMethod.GET, "/_users/reputation");
         }
 
-        Task<StacManResponse<ReputationHistory>> IUserMethods.GetReputationHistory(string site, IEnumerable<int> ids, string filter, int? page, int? pagesize)
+        Task<StacManResponse<ReputationHistory>> IUserMethods.GetReputationHistory(string site, IEnumerable<int> ids, string? filter, int? page, int? pagesize)
         {
             ValidateString(site, "site");
             ValidateEnumerable(ids, "ids");
@@ -857,7 +859,7 @@ namespace StackExchange.StacMan
             return CreateApiTask<ReputationHistory>(ub, HttpMethod.GET, "/_users/reputation-history");
         }
 
-        Task<StacManResponse<ReputationHistory>> IUserMethods.GetMyReputationHistory(string site, string access_token, string filter, int? page, int? pagesize)
+        Task<StacManResponse<ReputationHistory>> IUserMethods.GetMyReputationHistory(string site, string access_token, string? filter, int? page, int? pagesize)
         {
             ValidateString(site, "site");
             ValidateString(access_token, "access_token");
@@ -875,7 +877,7 @@ namespace StackExchange.StacMan
             return CreateApiTask<ReputationHistory>(ub, HttpMethod.GET, "/_users/reputation-history");
         }
 
-        Task<StacManResponse<ReputationHistory>> IUserMethods.GetReputationHistoryFull(string site, string access_token, int id, string filter, int? page, int? pagesize)
+        Task<StacManResponse<ReputationHistory>> IUserMethods.GetReputationHistoryFull(string site, string access_token, int id, string? filter, int? page, int? pagesize)
         {
             ValidateString(site, "site");
             ValidateString(access_token, "access_token");
@@ -893,7 +895,7 @@ namespace StackExchange.StacMan
             return CreateApiTask<ReputationHistory>(ub, HttpMethod.GET, "/_users/reputation-history/full");
         }
 
-        Task<StacManResponse<ReputationHistory>> IUserMethods.GetMyReputationHistoryFull(string site, string access_token, string filter, int? page, int? pagesize)
+        Task<StacManResponse<ReputationHistory>> IUserMethods.GetMyReputationHistoryFull(string site, string access_token, string? filter, int? page, int? pagesize)
         {
             ValidateString(site, "site");
             ValidateString(access_token, "access_token");
@@ -911,7 +913,7 @@ namespace StackExchange.StacMan
             return CreateApiTask<ReputationHistory>(ub, HttpMethod.GET, "/_users/reputation-history/full");
         }
 
-        Task<StacManResponse<SuggestedEdit>> IUserMethods.GetSuggestedEdits(string site, IEnumerable<int> ids, string filter, int? page, int? pagesize, DateTime? fromdate, DateTime? todate, SuggestedEdits.Sort? sort, DateTime? mindate, DateTime? maxdate, Order? order)
+        Task<StacManResponse<SuggestedEdit>> IUserMethods.GetSuggestedEdits(string site, IEnumerable<int> ids, string? filter, int? page, int? pagesize, DateTime? fromdate, DateTime? todate, SuggestedEdits.Sort sort, DateTime? mindate, DateTime? maxdate, Order? order)
         {
             ValidateString(site, "site");
             ValidateEnumerable(ids, "ids");
@@ -934,7 +936,7 @@ namespace StackExchange.StacMan
             return CreateApiTask<SuggestedEdit>(ub, HttpMethod.GET, "/_users/suggested-edits");
         }
 
-        Task<StacManResponse<SuggestedEdit>> IUserMethods.GetMySuggestedEdits(string site, string access_token, string filter, int? page, int? pagesize, DateTime? fromdate, DateTime? todate, SuggestedEdits.Sort? sort, DateTime? mindate, DateTime? maxdate, Order? order)
+        Task<StacManResponse<SuggestedEdit>> IUserMethods.GetMySuggestedEdits(string site, string access_token, string? filter, int? page, int? pagesize, DateTime? fromdate, DateTime? todate, SuggestedEdits.Sort sort, DateTime? mindate, DateTime? maxdate, Order? order)
         {
             ValidateString(site, "site");
             ValidateString(access_token, "access_token");
@@ -958,7 +960,7 @@ namespace StackExchange.StacMan
             return CreateApiTask<SuggestedEdit>(ub, HttpMethod.GET, "/_users/suggested-edits");
         }
 
-        Task<StacManResponse<Tag>> IUserMethods.GetTags(string site, IEnumerable<int> ids, string filter, int? page, int? pagesize, DateTime? fromdate, DateTime? todate, Tags.Sort? sort, int? min, int? max, DateTime? mindate, DateTime? maxdate, string minname, string maxname, Order? order)
+        Task<StacManResponse<Tag>> IUserMethods.GetTags(string site, IEnumerable<int> ids, string? filter, int? page, int? pagesize, DateTime? fromdate, DateTime? todate, Tags.Sort sort, int? min, int? max, DateTime? mindate, DateTime? maxdate, string? minname, string? maxname, Order? order)
         {
             ValidateString(site, "site");
             ValidateEnumerable(ids, "ids");
@@ -985,7 +987,7 @@ namespace StackExchange.StacMan
             return CreateApiTask<Tag>(ub, HttpMethod.GET, "/_users/tags");
         }
 
-        Task<StacManResponse<Tag>> IUserMethods.GetMyTags(string site, string access_token, string filter, int? page, int? pagesize, DateTime? fromdate, DateTime? todate, Tags.Sort? sort, int? min, int? max, DateTime? mindate, DateTime? maxdate, string minname, string maxname, Order? order)
+        Task<StacManResponse<Tag>> IUserMethods.GetMyTags(string site, string access_token, string? filter, int? page, int? pagesize, DateTime? fromdate, DateTime? todate, Tags.Sort sort, int? min, int? max, DateTime? mindate, DateTime? maxdate, string? minname, string? maxname, Order? order)
         {
             ValidateString(site, "site");
             ValidateString(access_token, "access_token");
@@ -1013,7 +1015,7 @@ namespace StackExchange.StacMan
             return CreateApiTask<Tag>(ub, HttpMethod.GET, "/_users/tags");
         }
 
-        Task<StacManResponse<Answer>> IUserMethods.GetTopAnswers(string site, int id, IEnumerable<string> tags, string filter, int? page, int? pagesize, DateTime? fromdate, DateTime? todate, Answers.Sort? sort, DateTime? mindate, DateTime? maxdate, int? min, int? max, Order? order)
+        Task<StacManResponse<Answer>> IUserMethods.GetTopAnswers(string site, int id, IEnumerable<string> tags, string? filter, int? page, int? pagesize, DateTime? fromdate, DateTime? todate, Answers.Sort sort, DateTime? mindate, DateTime? maxdate, int? min, int? max, Order? order)
         {
             ValidateString(site, "site");
             ValidateEnumerable(tags, "tags");
@@ -1038,7 +1040,7 @@ namespace StackExchange.StacMan
             return CreateApiTask<Answer>(ub, HttpMethod.GET, "/_users/tags/{tags}/top-answers");
         }
 
-        Task<StacManResponse<Answer>> IUserMethods.GetMyTopAnswers(string site, string access_token, IEnumerable<string> tags, string filter, int? page, int? pagesize, DateTime? fromdate, DateTime? todate, Answers.Sort? sort, DateTime? mindate, DateTime? maxdate, int? min, int? max, Order? order)
+        Task<StacManResponse<Answer>> IUserMethods.GetMyTopAnswers(string site, string access_token, IEnumerable<string> tags, string? filter, int? page, int? pagesize, DateTime? fromdate, DateTime? todate, Answers.Sort sort, DateTime? mindate, DateTime? maxdate, int? min, int? max, Order? order)
         {
             ValidateString(site, "site");
             ValidateString(access_token, "access_token");
@@ -1065,7 +1067,7 @@ namespace StackExchange.StacMan
             return CreateApiTask<Answer>(ub, HttpMethod.GET, "/_users/tags/{tags}/top-answers");
         }
 
-        Task<StacManResponse<Question>> IUserMethods.GetTopQuestions(string site, int id, IEnumerable<string> tags, string filter, int? page, int? pagesize, DateTime? fromdate, DateTime? todate, Questions.Sort? sort, DateTime? mindate, DateTime? maxdate, int? min, int? max, Order? order)
+        Task<StacManResponse<Question>> IUserMethods.GetTopQuestions(string site, int id, IEnumerable<string> tags, string? filter, int? page, int? pagesize, DateTime? fromdate, DateTime? todate, Questions.Sort sort, DateTime? mindate, DateTime? maxdate, int? min, int? max, Order? order)
         {
             ValidateString(site, "site");
             ValidateEnumerable(tags, "tags");
@@ -1090,7 +1092,7 @@ namespace StackExchange.StacMan
             return CreateApiTask<Question>(ub, HttpMethod.GET, "/_users/tags/{tags}/top-questions");
         }
 
-        Task<StacManResponse<Question>> IUserMethods.GetMyTopQuestions(string site, string access_token, IEnumerable<string> tags, string filter, int? page, int? pagesize, DateTime? fromdate, DateTime? todate, Questions.Sort? sort, DateTime? mindate, DateTime? maxdate, int? min, int? max, Order? order)
+        Task<StacManResponse<Question>> IUserMethods.GetMyTopQuestions(string site, string access_token, IEnumerable<string> tags, string? filter, int? page, int? pagesize, DateTime? fromdate, DateTime? todate, Questions.Sort sort, DateTime? mindate, DateTime? maxdate, int? min, int? max, Order? order)
         {
             ValidateString(site, "site");
             ValidateString(access_token, "access_token");
@@ -1117,7 +1119,7 @@ namespace StackExchange.StacMan
             return CreateApiTask<Question>(ub, HttpMethod.GET, "/_users/tags/{tags}/top-questions");
         }
 
-        Task<StacManResponse<UserTimeline>> IUserMethods.GetTimelines(string site, IEnumerable<int> ids, string filter, int? page, int? pagesize, DateTime? fromdate, DateTime? todate)
+        Task<StacManResponse<UserTimeline>> IUserMethods.GetTimelines(string site, IEnumerable<int> ids, string? filter, int? page, int? pagesize, DateTime? fromdate, DateTime? todate)
         {
             ValidateString(site, "site");
             ValidateEnumerable(ids, "ids");
@@ -1135,7 +1137,7 @@ namespace StackExchange.StacMan
             return CreateApiTask<UserTimeline>(ub, HttpMethod.GET, "/_users/timeline");
         }
 
-        Task<StacManResponse<UserTimeline>> IUserMethods.GetMyTimeline(string site, string access_token, string filter, int? page, int? pagesize, DateTime? fromdate, DateTime? todate)
+        Task<StacManResponse<UserTimeline>> IUserMethods.GetMyTimeline(string site, string access_token, string? filter, int? page, int? pagesize, DateTime? fromdate, DateTime? todate)
         {
             ValidateString(site, "site");
             ValidateString(access_token, "access_token");
@@ -1154,7 +1156,7 @@ namespace StackExchange.StacMan
             return CreateApiTask<UserTimeline>(ub, HttpMethod.GET, "/_users/timeline");
         }
 
-        Task<StacManResponse<TopTag>> IUserMethods.GetTopAnswerTags(string site, int id, string filter, int? page, int? pagesize)
+        Task<StacManResponse<TopTag>> IUserMethods.GetTopAnswerTags(string site, int id, string? filter, int? page, int? pagesize)
         {
             ValidateString(site, "site");
             ValidatePaging(page, pagesize);
@@ -1169,7 +1171,7 @@ namespace StackExchange.StacMan
             return CreateApiTask<TopTag>(ub, HttpMethod.GET, "/_users/top-answer-tags");
         }
 
-        Task<StacManResponse<TopTag>> IUserMethods.GetTopAnswerTags(string site, IEnumerable<int> ids, string filter, int? page, int? pagesize)
+        Task<StacManResponse<TopTag>> IUserMethods.GetTopAnswerTags(string site, IEnumerable<int> ids, string? filter, int? page, int? pagesize)
         {
             ValidateString(site, "site");
             ValidateEnumerable(ids, "ids");
@@ -1186,7 +1188,7 @@ namespace StackExchange.StacMan
             return CreateApiTask<TopTag>(ub, HttpMethod.GET, "/_users/top-answer-tags");
         }
 
-        Task<StacManResponse<TopTag>> IUserMethods.GetMyTopAnswerTags(string site, string access_token, string filter, int? page, int? pagesize)
+        Task<StacManResponse<TopTag>> IUserMethods.GetMyTopAnswerTags(string site, string access_token, string? filter, int? page, int? pagesize)
         {
             ValidateString(site, "site");
             ValidateString(access_token, "access_token");
@@ -1203,7 +1205,7 @@ namespace StackExchange.StacMan
             return CreateApiTask<TopTag>(ub, HttpMethod.GET, "/_users/top-answer-tags");
         }
 
-        Task<StacManResponse<TopTag>> IUserMethods.GetTopQuestionTags(string site, int id, string filter, int? page, int? pagesize)
+        Task<StacManResponse<TopTag>> IUserMethods.GetTopQuestionTags(string site, int id, string? filter, int? page, int? pagesize)
         {
             ValidateString(site, "site");
             ValidatePaging(page, pagesize);
@@ -1218,7 +1220,7 @@ namespace StackExchange.StacMan
             return CreateApiTask<TopTag>(ub, HttpMethod.GET, "/_users/top-question-tags");
         }
 
-        Task<StacManResponse<TopTag>> IUserMethods.GetTopQuestionTags(string site, IEnumerable<int> ids, string filter, int? page, int? pagesize)
+        Task<StacManResponse<TopTag>> IUserMethods.GetTopQuestionTags(string site, IEnumerable<int> ids, string? filter, int? page, int? pagesize)
         {
             ValidateString(site, "site");
             ValidateEnumerable(ids, "ids");
@@ -1235,7 +1237,7 @@ namespace StackExchange.StacMan
             return CreateApiTask<TopTag>(ub, HttpMethod.GET, "/_users/top-question-tags");
         }
 
-        Task<StacManResponse<TopTag>> IUserMethods.GetMyTopQuestionTags(string site, string access_token, string filter, int? page, int? pagesize)
+        Task<StacManResponse<TopTag>> IUserMethods.GetMyTopQuestionTags(string site, string access_token, string? filter, int? page, int? pagesize)
         {
             ValidateString(site, "site");
             ValidateString(access_token, "access_token");
@@ -1252,7 +1254,7 @@ namespace StackExchange.StacMan
             return CreateApiTask<TopTag>(ub, HttpMethod.GET, "/_users/top-question-tags");
         }
 
-        Task<StacManResponse<WritePermission>> IUserMethods.GetWritePermissions(string site, int id, string filter, int? page, int? pagesize)
+        Task<StacManResponse<WritePermission>> IUserMethods.GetWritePermissions(string site, int id, string? filter, int? page, int? pagesize)
         {
             ValidateString(site, "site");
             ValidateMinApiVersion("2.1");
@@ -1268,7 +1270,7 @@ namespace StackExchange.StacMan
             return CreateApiTask<WritePermission>(ub, HttpMethod.GET, "/_users/write-permissions");
         }
 
-        Task<StacManResponse<WritePermission>> IUserMethods.GetMyWritePermissions(string site, string access_token, string filter, int? page, int? pagesize)
+        Task<StacManResponse<WritePermission>> IUserMethods.GetMyWritePermissions(string site, string access_token, string? filter, int? page, int? pagesize)
         {
             ValidateString(site, "site");
             ValidateString(access_token, "access_token");
@@ -1286,7 +1288,7 @@ namespace StackExchange.StacMan
             return CreateApiTask<WritePermission>(ub, HttpMethod.GET, "/_users/write-permissions");
         }
 
-        Task<StacManResponse<User>> IUserMethods.GetModerators(string site, string filter, int? page, int? pagesize, DateTime? fromdate, DateTime? todate, Users.Sort? sort, int? min, int? max, DateTime? mindate, DateTime? maxdate, string minname, string maxname, Order? order)
+        Task<StacManResponse<User>> IUserMethods.GetModerators(string site, string? filter, int? page, int? pagesize, DateTime? fromdate, DateTime? todate, Users.Sort sort, int? min, int? max, DateTime? mindate, DateTime? maxdate, string? minname, string? maxname, Order? order)
         {
             ValidateString(site, "site");
             ValidatePaging(page, pagesize);
@@ -1312,7 +1314,7 @@ namespace StackExchange.StacMan
             return CreateApiTask<User>(ub, HttpMethod.GET, "/users/moderators");
         }
 
-        Task<StacManResponse<User>> IUserMethods.GetElectedModerators(string site, string filter, int? page, int? pagesize, DateTime? fromdate, DateTime? todate, Users.Sort? sort, int? min, int? max, DateTime? mindate, DateTime? maxdate, string minname, string maxname, Order? order)
+        Task<StacManResponse<User>> IUserMethods.GetElectedModerators(string site, string? filter, int? page, int? pagesize, DateTime? fromdate, DateTime? todate, Users.Sort sort, int? min, int? max, DateTime? mindate, DateTime? maxdate, string? minname, string? maxname, Order? order)
         {
             ValidateString(site, "site");
             ValidatePaging(page, pagesize);
@@ -1338,7 +1340,7 @@ namespace StackExchange.StacMan
             return CreateApiTask<User>(ub, HttpMethod.GET, "/users/moderators/elected");
         }
 
-        Task<StacManResponse<InboxItem>> IUserMethods.GetInbox(string site, string access_token, int id, string filter, int? page, int? pagesize)
+        Task<StacManResponse<InboxItem>> IUserMethods.GetInbox(string site, string access_token, int id, string? filter, int? page, int? pagesize)
         {
             ValidateString(site, "site");
             ValidateString(access_token, "access_token");
@@ -1355,7 +1357,7 @@ namespace StackExchange.StacMan
             return CreateApiTask<InboxItem>(ub, HttpMethod.GET, "/_users/inbox");
         }
 
-        Task<StacManResponse<InboxItem>> IUserMethods.GetMyInbox(string site, string access_token, string filter, int? page, int? pagesize)
+        Task<StacManResponse<InboxItem>> IUserMethods.GetMyInbox(string site, string access_token, string? filter, int? page, int? pagesize)
         {
             ValidateString(site, "site");
             ValidateString(access_token, "access_token");
@@ -1372,7 +1374,7 @@ namespace StackExchange.StacMan
             return CreateApiTask<InboxItem>(ub, HttpMethod.GET, "/_users/inbox");
         }
 
-        Task<StacManResponse<InboxItem>> IUserMethods.GetInboxUnread(string site, string access_token, int id, string filter, int? page, int? pagesize, DateTime? since)
+        Task<StacManResponse<InboxItem>> IUserMethods.GetInboxUnread(string site, string access_token, int id, string? filter, int? page, int? pagesize, DateTime? since)
         {
             ValidateString(site, "site");
             ValidateString(access_token, "access_token");
@@ -1390,7 +1392,7 @@ namespace StackExchange.StacMan
             return CreateApiTask<InboxItem>(ub, HttpMethod.GET, "/_users/inbox/unread");
         }
 
-        Task<StacManResponse<InboxItem>> IUserMethods.GetMyInboxUnread(string site, string access_token, string filter, int? page, int? pagesize, DateTime? since)
+        Task<StacManResponse<InboxItem>> IUserMethods.GetMyInboxUnread(string site, string access_token, string? filter, int? page, int? pagesize, DateTime? since)
         {
             ValidateString(site, "site");
             ValidateString(access_token, "access_token");
@@ -1408,7 +1410,7 @@ namespace StackExchange.StacMan
             return CreateApiTask<InboxItem>(ub, HttpMethod.GET, "/_users/inbox/unread");
         }
 
-        Task<StacManResponse<NetworkUser>> IUserMethods.GetAssociated(IEnumerable<int> ids, string filter, int? page, int? pagesize)
+        Task<StacManResponse<NetworkUser>> IUserMethods.GetAssociated(IEnumerable<int> ids, string? filter, int? page, int? pagesize)
         {
             ValidateEnumerable(ids, "ids");
             ValidatePaging(page, pagesize);
@@ -1422,7 +1424,7 @@ namespace StackExchange.StacMan
             return CreateApiTask<NetworkUser>(ub, HttpMethod.GET, "/_users/associated");
         }
 
-        Task<StacManResponse<NetworkUser>> IUserMethods.GetMyAssociated(string access_token, string filter, int? page, int? pagesize)
+        Task<StacManResponse<NetworkUser>> IUserMethods.GetMyAssociated(string access_token, string? filter, int? page, int? pagesize)
         {
             ValidateString(access_token, "access_token");
             ValidatePaging(page, pagesize);
@@ -1446,327 +1448,327 @@ namespace StackExchange.StacMan
         /// <summary>
         /// Get all users on the site. (API Method: "/users")
         /// </summary>
-        Task<StacManResponse<User>> GetAll(string site, string filter = null, int? page = null, int? pagesize = null, DateTime? fromdate = null, DateTime? todate = null, Users.Sort? sort = null, int? min = null, int? max = null, DateTime? mindate = null, DateTime? maxdate = null, string minname = null, string maxname = null, Order? order = null, string inname = null);
+        Task<StacManResponse<User>> GetAll(string site, string? filter = default, int? page = default, int? pagesize = default, DateTime? fromdate = default, DateTime? todate = default, Users.Sort sort = default, int? min = default, int? max = default, DateTime? mindate = default, DateTime? maxdate = default, string? minname = default, string? maxname = default, Order? order = default, string? inname = default);
 
         /// <summary>
         /// Get the users identified by a set of ids. (API Method: "/users/{ids}")
         /// </summary>
-        Task<StacManResponse<User>> GetByIds(string site, IEnumerable<int> ids, string filter = null, int? page = null, int? pagesize = null, DateTime? fromdate = null, DateTime? todate = null, Users.Sort? sort = null, int? min = null, int? max = null, DateTime? mindate = null, DateTime? maxdate = null, string minname = null, string maxname = null, Order? order = null);
+        Task<StacManResponse<User>> GetByIds(string site, IEnumerable<int> ids, string? filter = default, int? page = default, int? pagesize = default, DateTime? fromdate = default, DateTime? todate = default, Users.Sort sort = default, int? min = default, int? max = default, DateTime? mindate = default, DateTime? maxdate = default, string? minname = default, string? maxname = default, Order? order = default);
 
         /// <summary>
         /// Get the authenticated user [auth required] (API Method: "/me")
         /// </summary>
-        Task<StacManResponse<User>> GetMe(string site, string access_token, string filter = null, int? page = null, int? pagesize = null, DateTime? fromdate = null, DateTime? todate = null, Users.Sort? sort = null, int? min = null, int? max = null, DateTime? mindate = null, DateTime? maxdate = null, string minname = null, string maxname = null, Order? order = null);
+        Task<StacManResponse<User>> GetMe(string site, string access_token, string? filter = default, int? page = default, int? pagesize = default, DateTime? fromdate = default, DateTime? todate = default, Users.Sort sort = default, int? min = default, int? max = default, DateTime? mindate = default, DateTime? maxdate = default, string? minname = default, string? maxname = default, Order? order = default);
 
         /// <summary>
         /// Get the answers posted by the users identified by a set of ids. (API Method: "/users/{ids}/answers")
         /// </summary>
-        Task<StacManResponse<Answer>> GetAnswers(string site, IEnumerable<int> ids, string filter = null, int? page = null, int? pagesize = null, DateTime? fromdate = null, DateTime? todate = null, Answers.Sort? sort = null, DateTime? mindate = null, DateTime? maxdate = null, int? min = null, int? max = null, Order? order = null);
+        Task<StacManResponse<Answer>> GetAnswers(string site, IEnumerable<int> ids, string? filter = default, int? page = default, int? pagesize = default, DateTime? fromdate = default, DateTime? todate = default, Answers.Sort sort = default, DateTime? mindate = default, DateTime? maxdate = default, int? min = default, int? max = default, Order? order = default);
 
         /// <summary>
         /// Get the answers posted by the authenticated user. [auth required] (API Method: "/me/answers")
         /// </summary>
-        Task<StacManResponse<Answer>> GetMyAnswers(string site, string access_token, string filter = null, int? page = null, int? pagesize = null, DateTime? fromdate = null, DateTime? todate = null, Answers.Sort? sort = null, DateTime? mindate = null, DateTime? maxdate = null, int? min = null, int? max = null, Order? order = null);
+        Task<StacManResponse<Answer>> GetMyAnswers(string site, string access_token, string? filter = default, int? page = default, int? pagesize = default, DateTime? fromdate = default, DateTime? todate = default, Answers.Sort sort = default, DateTime? mindate = default, DateTime? maxdate = default, int? min = default, int? max = default, Order? order = default);
 
         /// <summary>
         /// Get the badges earned by the users identified by a set of ids. (API Method: "/users/{ids}/badges")
         /// </summary>
-        Task<StacManResponse<Badge>> GetBadges(string site, IEnumerable<int> ids, string filter = null, int? page = null, int? pagesize = null, DateTime? fromdate = null, DateTime? todate = null, Badges.UserSort? sort = null, Badges.Rank? minrank = null, Badges.Rank? maxrank = null, string minname = null, string maxname = null, Badges.BadgeType? mintype = null, Badges.BadgeType? maxtype = null, DateTime? mindate = null, DateTime? maxdate = null, Order? order = null);
+        Task<StacManResponse<Badge>> GetBadges(string site, IEnumerable<int> ids, string? filter = default, int? page = default, int? pagesize = default, DateTime? fromdate = default, DateTime? todate = default, Badges.UserSort sort = default, Badges.Rank? minrank = default, Badges.Rank? maxrank = default, string? minname = default, string? maxname = default, Badges.BadgeType? mintype = default, Badges.BadgeType? maxtype = default, DateTime? mindate = default, DateTime? maxdate = default, Order? order = default);
 
         /// <summary>
         /// Get the badges earned by the authenticated user. [auth required] (API Method: "/me/badges")
         /// </summary>
-        Task<StacManResponse<Badge>> GetMyBadges(string site, string access_token, string filter = null, int? page = null, int? pagesize = null, DateTime? fromdate = null, DateTime? todate = null, Badges.UserSort? sort = null, Badges.Rank? minrank = null, Badges.Rank? maxrank = null, string minname = null, string maxname = null, Badges.BadgeType? mintype = null, Badges.BadgeType? maxtype = null, DateTime? mindate = null, DateTime? maxdate = null, Order? order = null);
+        Task<StacManResponse<Badge>> GetMyBadges(string site, string access_token, string? filter = default, int? page = default, int? pagesize = default, DateTime? fromdate = default, DateTime? todate = default, Badges.UserSort sort = default, Badges.Rank? minrank = default, Badges.Rank? maxrank = default, string? minname = default, string? maxname = default, Badges.BadgeType? mintype = default, Badges.BadgeType? maxtype = default, DateTime? mindate = default, DateTime? maxdate = default, Order? order = default);
 
         /// <summary>
         /// Get the comments posted by the users identified by a set of ids. (API Method: "/users/{ids}/comments")
         /// </summary>
-        Task<StacManResponse<Comment>> GetComments(string site, IEnumerable<int> ids, string filter = null, int? page = null, int? pagesize = null, DateTime? fromdate = null, DateTime? todate = null, Comments.Sort? sort = null, DateTime? mindate = null, DateTime? maxdate = null, int? min = null, int? max = null, Order? order = null);
+        Task<StacManResponse<Comment>> GetComments(string site, IEnumerable<int> ids, string? filter = default, int? page = default, int? pagesize = default, DateTime? fromdate = default, DateTime? todate = default, Comments.Sort sort = default, DateTime? mindate = default, DateTime? maxdate = default, int? min = default, int? max = default, Order? order = default);
 
         /// <summary>
         /// Get the comments posted by the authenticated user. [auth required] (API Method: "/me/comments")
         /// </summary>
-        Task<StacManResponse<Comment>> GetMyComments(string site, string access_token, string filter = null, int? page = null, int? pagesize = null, DateTime? fromdate = null, DateTime? todate = null, Comments.Sort? sort = null, DateTime? mindate = null, DateTime? maxdate = null, int? min = null, int? max = null, Order? order = null);
+        Task<StacManResponse<Comment>> GetMyComments(string site, string access_token, string? filter = default, int? page = default, int? pagesize = default, DateTime? fromdate = default, DateTime? todate = default, Comments.Sort sort = default, DateTime? mindate = default, DateTime? maxdate = default, int? min = default, int? max = default, Order? order = default);
 
         /// <summary>
         /// Get the comments posted by a set of users in reply to another user. (API Method: "/users/{ids}/comments/{toid}")
         /// </summary>
-        Task<StacManResponse<Comment>> GetCommentsToUser(string site, IEnumerable<int> ids, int toid, string filter = null, int? page = null, int? pagesize = null, DateTime? fromdate = null, DateTime? todate = null, Comments.Sort? sort = null, DateTime? mindate = null, DateTime? maxdate = null, int? min = null, int? max = null, Order? order = null);
+        Task<StacManResponse<Comment>> GetCommentsToUser(string site, IEnumerable<int> ids, int toid, string? filter = default, int? page = default, int? pagesize = default, DateTime? fromdate = default, DateTime? todate = default, Comments.Sort sort = default, DateTime? mindate = default, DateTime? maxdate = default, int? min = default, int? max = default, Order? order = default);
 
         /// <summary>
         /// Get the comments posted by the authenticated user in reply to another user. [auth required] (API Method: "/me/comments/{toid}")
         /// </summary>
-        Task<StacManResponse<Comment>> GetMyCommentsToUser(string site, string access_token, int toid, string filter = null, int? page = null, int? pagesize = null, DateTime? fromdate = null, DateTime? todate = null, Comments.Sort? sort = null, DateTime? mindate = null, DateTime? maxdate = null, int? min = null, int? max = null, Order? order = null);
+        Task<StacManResponse<Comment>> GetMyCommentsToUser(string site, string access_token, int toid, string? filter = default, int? page = default, int? pagesize = default, DateTime? fromdate = default, DateTime? todate = default, Comments.Sort sort = default, DateTime? mindate = default, DateTime? maxdate = default, int? min = default, int? max = default, Order? order = default);
 
         /// <summary>
         /// Get the questions favorited by users identified by a set of ids. (API Method: "/users/{ids}/favorites")
         /// </summary>
-        Task<StacManResponse<Question>> GetFavorites(string site, IEnumerable<int> ids, string filter = null, int? page = null, int? pagesize = null, DateTime? fromdate = null, DateTime? todate = null, Questions.FavoriteSort? sort = null, DateTime? mindate = null, DateTime? maxdate = null, int? min = null, int? max = null, Order? order = null);
+        Task<StacManResponse<Question>> GetFavorites(string site, IEnumerable<int> ids, string? filter = default, int? page = default, int? pagesize = default, DateTime? fromdate = default, DateTime? todate = default, Questions.FavoriteSort sort = default, DateTime? mindate = default, DateTime? maxdate = default, int? min = default, int? max = default, Order? order = default);
 
         /// <summary>
         /// Get the questions favorited by the authenticated user. [auth required] (API Method: "/me/favorites")
         /// </summary>
-        Task<StacManResponse<Question>> GetMyFavorites(string site, string access_token, string filter = null, int? page = null, int? pagesize = null, DateTime? fromdate = null, DateTime? todate = null, Questions.FavoriteSort? sort = null, DateTime? mindate = null, DateTime? maxdate = null, int? min = null, int? max = null, Order? order = null);
+        Task<StacManResponse<Question>> GetMyFavorites(string site, string access_token, string? filter = default, int? page = default, int? pagesize = default, DateTime? fromdate = default, DateTime? todate = default, Questions.FavoriteSort sort = default, DateTime? mindate = default, DateTime? maxdate = default, int? min = default, int? max = default, Order? order = default);
 
         /// <summary>
         /// Get the comments that mention one of the users identified by a set of ids. (API Method: "/users/{ids}/mentioned")
         /// </summary>
-        Task<StacManResponse<Comment>> GetCommentsMentionedIn(string site, IEnumerable<int> ids, string filter = null, int? page = null, int? pagesize = null, DateTime? fromdate = null, DateTime? todate = null, Comments.Sort? sort = null, DateTime? mindate = null, DateTime? maxdate = null, int? min = null, int? max = null, Order? order = null);
+        Task<StacManResponse<Comment>> GetCommentsMentionedIn(string site, IEnumerable<int> ids, string? filter = default, int? page = default, int? pagesize = default, DateTime? fromdate = default, DateTime? todate = default, Comments.Sort sort = default, DateTime? mindate = default, DateTime? maxdate = default, int? min = default, int? max = default, Order? order = default);
 
         /// <summary>
         /// Get the comments that mention the authenticated user. [auth required] (API Method: "/me/mentioned")
         /// </summary>
-        Task<StacManResponse<Comment>> GetMyCommentsMentionedIn(string site, string access_token, string filter = null, int? page = null, int? pagesize = null, DateTime? fromdate = null, DateTime? todate = null, Comments.Sort? sort = null, DateTime? mindate = null, DateTime? maxdate = null, int? min = null, int? max = null, Order? order = null);
+        Task<StacManResponse<Comment>> GetMyCommentsMentionedIn(string site, string access_token, string? filter = default, int? page = default, int? pagesize = default, DateTime? fromdate = default, DateTime? todate = default, Comments.Sort sort = default, DateTime? mindate = default, DateTime? maxdate = default, int? min = default, int? max = default, Order? order = default);
 
         /// <summary>
         /// Get the merges a user's accounts has undergone. (API Method: "/users/{ids}/merges") -- introduced in API version 2.1
         /// </summary>
-        Task<StacManResponse<AccountMerge>> GetMerges(IEnumerable<int> ids, string filter = null, int? page = null, int? pagesize = null);
+        Task<StacManResponse<AccountMerge>> GetMerges(IEnumerable<int> ids, string? filter = default, int? page = default, int? pagesize = default);
 
         /// <summary>
         /// Get the merges the authenticated user's accounts has undergone. [auth required] (API Method: "/me/merges") -- introduced in API version 2.1
         /// </summary>
-        Task<StacManResponse<AccountMerge>> GetMyMerges(string access_token, string filter = null, int? page = null, int? pagesize = null);
+        Task<StacManResponse<AccountMerge>> GetMyMerges(string access_token, string? filter = default, int? page = default, int? pagesize = default);
 
         /// <summary>
         /// Get a user's notifications. [auth required] (API Method: "/users/{id}/notifications") -- introduced in API version 2.1
         /// </summary>
-        Task<StacManResponse<Notification>> GetNotifications(string site, string access_token, int id, string filter = null, int? page = null, int? pagesize = null);
+        Task<StacManResponse<Notification>> GetNotifications(string site, string access_token, int id, string? filter = default, int? page = default, int? pagesize = default);
 
         /// <summary>
         /// Get the authenticated user's notifications. [auth required] (API Method: "/me/notifications") -- introduced in API version 2.1
         /// </summary>
-        Task<StacManResponse<Notification>> GetMyNotifications(string site, string access_token, string filter = null, int? page = null, int? pagesize = null);
+        Task<StacManResponse<Notification>> GetMyNotifications(string site, string access_token, string? filter = default, int? page = default, int? pagesize = default);
 
         /// <summary>
         /// Get a user's unread notifications. [auth required] (API Method: "/users/{id}/notifications/unread") -- introduced in API version 2.1
         /// </summary>
-        Task<StacManResponse<Notification>> GetUnreadNotifications(string site, string access_token, int id, string filter = null, int? page = null, int? pagesize = null);
+        Task<StacManResponse<Notification>> GetUnreadNotifications(string site, string access_token, int id, string? filter = default, int? page = default, int? pagesize = default);
 
         /// <summary>
         /// Get the authenticated user's unread notifications. [auth required] (API Method: "/me/notifications/unread") -- introduced in API version 2.1
         /// </summary>
-        Task<StacManResponse<Notification>> GetMyUnreadNotifications(string site, string access_token, string filter = null, int? page = null, int? pagesize = null);
+        Task<StacManResponse<Notification>> GetMyUnreadNotifications(string site, string access_token, string? filter = default, int? page = default, int? pagesize = default);
 
         /// <summary>
         /// Get the privileges the given user has on the site. (API Method: "/users/{id}/privileges")
         /// </summary>
-        Task<StacManResponse<Privilege>> GetPrivileges(string site, int id, string filter = null, int? page = null, int? pagesize = null);
+        Task<StacManResponse<Privilege>> GetPrivileges(string site, int id, string? filter = default, int? page = default, int? pagesize = default);
 
         /// <summary>
         /// Get the privileges the authenticated user has on the site. [auth required] (API Method: "/me/privileges")
         /// </summary>
-        Task<StacManResponse<Privilege>> GetMyPrivileges(string site, string access_token, string filter = null, int? page = null, int? pagesize = null);
+        Task<StacManResponse<Privilege>> GetMyPrivileges(string site, string access_token, string? filter = default, int? page = default, int? pagesize = default);
 
         /// <summary>
         /// Get the questions asked by the users identified by a set of ids. (API Method: "/users/{ids}/questions")
         /// </summary>
-        Task<StacManResponse<Question>> GetQuestions(string site, IEnumerable<int> ids, string filter = null, int? page = null, int? pagesize = null, DateTime? fromdate = null, DateTime? todate = null, Questions.Sort? sort = null, DateTime? mindate = null, DateTime? maxdate = null, int? min = null, int? max = null, Order? order = null);
+        Task<StacManResponse<Question>> GetQuestions(string site, IEnumerable<int> ids, string? filter = default, int? page = default, int? pagesize = default, DateTime? fromdate = default, DateTime? todate = default, Questions.Sort sort = default, DateTime? mindate = default, DateTime? maxdate = default, int? min = default, int? max = default, Order? order = default);
 
         /// <summary>
         /// Get the questions asked by the authenticated user. [auth required] (API Method: "/me/questions")
         /// </summary>
-        Task<StacManResponse<Question>> GetMyQuestions(string site, string access_token, string filter = null, int? page = null, int? pagesize = null, DateTime? fromdate = null, DateTime? todate = null, Questions.Sort? sort = null, DateTime? mindate = null, DateTime? maxdate = null, int? min = null, int? max = null, Order? order = null);
+        Task<StacManResponse<Question>> GetMyQuestions(string site, string access_token, string? filter = default, int? page = default, int? pagesize = default, DateTime? fromdate = default, DateTime? todate = default, Questions.Sort sort = default, DateTime? mindate = default, DateTime? maxdate = default, int? min = default, int? max = default, Order? order = default);
 
         /// <summary>
         /// Get the questions on which a set of users have active bounties. (API Method: "/users/{ids}/questions/featured")
         /// </summary>
-        Task<StacManResponse<Question>> GetFeaturedQuestions(string site, IEnumerable<int> ids, string filter = null, int? page = null, int? pagesize = null, DateTime? fromdate = null, DateTime? todate = null, Questions.Sort? sort = null, DateTime? mindate = null, DateTime? maxdate = null, int? min = null, int? max = null, Order? order = null);
+        Task<StacManResponse<Question>> GetFeaturedQuestions(string site, IEnumerable<int> ids, string? filter = default, int? page = default, int? pagesize = default, DateTime? fromdate = default, DateTime? todate = default, Questions.Sort sort = default, DateTime? mindate = default, DateTime? maxdate = default, int? min = default, int? max = default, Order? order = default);
 
         /// <summary>
         /// Get the questions on which the authenticated user has active bounties. [auth required] (API Method: "/me/questions/featured")
         /// </summary>
-        Task<StacManResponse<Question>> GetMyFeaturedQuestions(string site, string access_token, string filter = null, int? page = null, int? pagesize = null, DateTime? fromdate = null, DateTime? todate = null, Questions.Sort? sort = null, DateTime? mindate = null, DateTime? maxdate = null, int? min = null, int? max = null, Order? order = null);
+        Task<StacManResponse<Question>> GetMyFeaturedQuestions(string site, string access_token, string? filter = default, int? page = default, int? pagesize = default, DateTime? fromdate = default, DateTime? todate = default, Questions.Sort sort = default, DateTime? mindate = default, DateTime? maxdate = default, int? min = default, int? max = default, Order? order = default);
 
         /// <summary>
         /// Get the questions asked by a set of users which have no answers. (API Method: "/users/{ids}/questions/featured")
         /// </summary>
-        Task<StacManResponse<Question>> GetQuestionsWithNoAnswers(string site, IEnumerable<int> ids, string filter = null, int? page = null, int? pagesize = null, DateTime? fromdate = null, DateTime? todate = null, Questions.Sort? sort = null, DateTime? mindate = null, DateTime? maxdate = null, int? min = null, int? max = null, Order? order = null);
+        Task<StacManResponse<Question>> GetQuestionsWithNoAnswers(string site, IEnumerable<int> ids, string? filter = default, int? page = default, int? pagesize = default, DateTime? fromdate = default, DateTime? todate = default, Questions.Sort sort = default, DateTime? mindate = default, DateTime? maxdate = default, int? min = default, int? max = default, Order? order = default);
 
         /// <summary>
         /// Get the questions asked by the authenticated user which have no answers. [auth required] (API Method: "/me/questions/featured")
         /// </summary>
-        Task<StacManResponse<Question>> GetMyQuestionsWithNoAnswers(string site, string access_token, string filter = null, int? page = null, int? pagesize = null, DateTime? fromdate = null, DateTime? todate = null, Questions.Sort? sort = null, DateTime? mindate = null, DateTime? maxdate = null, int? min = null, int? max = null, Order? order = null);
+        Task<StacManResponse<Question>> GetMyQuestionsWithNoAnswers(string site, string access_token, string? filter = default, int? page = default, int? pagesize = default, DateTime? fromdate = default, DateTime? todate = default, Questions.Sort sort = default, DateTime? mindate = default, DateTime? maxdate = default, int? min = default, int? max = default, Order? order = default);
 
         /// <summary>
         /// Get the questions asked by a set of users which have at least one answer but no accepted answer. (API Method: "/users/{ids}/questions/unaccepted")
         /// </summary>
-        Task<StacManResponse<Question>> GetQuestionsWithUnaccepted(string site, IEnumerable<int> ids, string filter = null, int? page = null, int? pagesize = null, DateTime? fromdate = null, DateTime? todate = null, Questions.Sort? sort = null, DateTime? mindate = null, DateTime? maxdate = null, int? min = null, int? max = null, Order? order = null);
+        Task<StacManResponse<Question>> GetQuestionsWithUnaccepted(string site, IEnumerable<int> ids, string? filter = default, int? page = default, int? pagesize = default, DateTime? fromdate = default, DateTime? todate = default, Questions.Sort sort = default, DateTime? mindate = default, DateTime? maxdate = default, int? min = default, int? max = default, Order? order = default);
 
         /// <summary>
         /// Get the questions asked by the authenticated user which have at least one answer but no accepted answer. [auth required] (API Method: "/me/questions/unaccepted")
         /// </summary>
-        Task<StacManResponse<Question>> GetMyQuestionsWithUnaccepted(string site, string access_token, string filter = null, int? page = null, int? pagesize = null, DateTime? fromdate = null, DateTime? todate = null, Questions.Sort? sort = null, DateTime? mindate = null, DateTime? maxdate = null, int? min = null, int? max = null, Order? order = null);
+        Task<StacManResponse<Question>> GetMyQuestionsWithUnaccepted(string site, string access_token, string? filter = default, int? page = default, int? pagesize = default, DateTime? fromdate = default, DateTime? todate = default, Questions.Sort sort = default, DateTime? mindate = default, DateTime? maxdate = default, int? min = default, int? max = default, Order? order = default);
 
         /// <summary>
         /// Get the questions asked by a set of users which are not considered to be adequately answered. (API Method: "/users/{ids}/questions/unanswered")
         /// </summary>
-        Task<StacManResponse<Question>> GetUnansweredQuestions(string site, IEnumerable<int> ids, string filter = null, int? page = null, int? pagesize = null, DateTime? fromdate = null, DateTime? todate = null, Questions.Sort? sort = null, DateTime? mindate = null, DateTime? maxdate = null, int? min = null, int? max = null, Order? order = null);
+        Task<StacManResponse<Question>> GetUnansweredQuestions(string site, IEnumerable<int> ids, string? filter = default, int? page = default, int? pagesize = default, DateTime? fromdate = default, DateTime? todate = default, Questions.Sort sort = default, DateTime? mindate = default, DateTime? maxdate = default, int? min = default, int? max = default, Order? order = default);
 
         /// <summary>
         /// Get the questions asked by the authenticated user which are not considered to be adequately answered. [auth required] (API Method: "/me/questions/unanswered")
         /// </summary>
-        Task<StacManResponse<Question>> GetMyUnansweredQuestions(string site, string access_token, string filter = null, int? page = null, int? pagesize = null, DateTime? fromdate = null, DateTime? todate = null, Questions.Sort? sort = null, DateTime? mindate = null, DateTime? maxdate = null, int? min = null, int? max = null, Order? order = null);
+        Task<StacManResponse<Question>> GetMyUnansweredQuestions(string site, string access_token, string? filter = default, int? page = default, int? pagesize = default, DateTime? fromdate = default, DateTime? todate = default, Questions.Sort sort = default, DateTime? mindate = default, DateTime? maxdate = default, int? min = default, int? max = default, Order? order = default);
 
         /// <summary>
         /// Get a subset of the reputation changes experienced by the users identified by a set of ids. (API Method: "/users/{ids}/reputation")
         /// </summary>
-        Task<StacManResponse<Reputation>> GetReputation(string site, IEnumerable<int> ids, string filter = null, int? page = null, int? pagesize = null, DateTime? fromdate = null, DateTime? todate = null);
+        Task<StacManResponse<Reputation>> GetReputation(string site, IEnumerable<int> ids, string? filter = default, int? page = default, int? pagesize = default, DateTime? fromdate = default, DateTime? todate = default);
 
         /// <summary>
         /// Get a subset of the reputation changes experienced by the authenticated user. [auth required] (API Method: "/me/reputation")
         /// </summary>
-        Task<StacManResponse<Reputation>> GetMyReputation(string site, string access_token, string filter = null);
+        Task<StacManResponse<Reputation>> GetMyReputation(string site, string access_token, string? filter = default);
 
         /// <summary>
         /// Get a history of a user's reputation, excluding private events. (API Method: "/users/{ids}/reputation-history") -- introduced in API version 2.1
         /// </summary>
-        Task<StacManResponse<ReputationHistory>> GetReputationHistory(string site, IEnumerable<int> ids, string filter = null, int? page = null, int? pagesize = null);
+        Task<StacManResponse<ReputationHistory>> GetReputationHistory(string site, IEnumerable<int> ids, string? filter = default, int? page = default, int? pagesize = default);
 
         /// <summary>
         /// Get a history of the authenticated user's reputation, excluding private events. [auth required] (API Method: "/me/reputation-history") -- introduced in API version 2.1
         /// </summary>
-        Task<StacManResponse<ReputationHistory>> GetMyReputationHistory(string site, string access_token, string filter = null, int? page = null, int? pagesize = null);
+        Task<StacManResponse<ReputationHistory>> GetMyReputationHistory(string site, string access_token, string? filter = default, int? page = default, int? pagesize = default);
 
         /// <summary>
         /// Get a full history of a user's reputation. [auth required] (API Method: "/users/{id}/reputation-history/full") -- introduced in API version 2.1
         /// </summary>
-        Task<StacManResponse<ReputationHistory>> GetReputationHistoryFull(string site, string access_token, int id, string filter = null, int? page = null, int? pagesize = null);
+        Task<StacManResponse<ReputationHistory>> GetReputationHistoryFull(string site, string access_token, int id, string? filter = default, int? page = default, int? pagesize = default);
 
         /// <summary>
         /// Get a full history of the authenticated user's reputation. [auth required] (API Method: "/me/reputation-history/full") -- introduced in API version 2.1
         /// </summary>
-        Task<StacManResponse<ReputationHistory>> GetMyReputationHistoryFull(string site, string access_token, string filter = null, int? page = null, int? pagesize = null);
+        Task<StacManResponse<ReputationHistory>> GetMyReputationHistoryFull(string site, string access_token, string? filter = default, int? page = default, int? pagesize = default);
 
         /// <summary>
         /// Get the suggested edits provided by the users identified by a set of ids. (API Method: "/users/{ids}/suggested-edits")
         /// </summary>
-        Task<StacManResponse<SuggestedEdit>> GetSuggestedEdits(string site, IEnumerable<int> ids, string filter = null, int? page = null, int? pagesize = null, DateTime? fromdate = null, DateTime? todate = null, SuggestedEdits.Sort? sort = null, DateTime? mindate = null, DateTime? maxdate = null, Order? order = null);
+        Task<StacManResponse<SuggestedEdit>> GetSuggestedEdits(string site, IEnumerable<int> ids, string? filter = default, int? page = default, int? pagesize = default, DateTime? fromdate = default, DateTime? todate = default, SuggestedEdits.Sort sort = default, DateTime? mindate = default, DateTime? maxdate = default, Order? order = default);
 
         /// <summary>
         /// Get the suggested edits provided by the authenticated user. [auth required] (API Method: "/me/suggested-edits")
         /// </summary>
-        Task<StacManResponse<SuggestedEdit>> GetMySuggestedEdits(string site, string access_token, string filter = null, int? page = null, int? pagesize = null, DateTime? fromdate = null, DateTime? todate = null, SuggestedEdits.Sort? sort = null, DateTime? mindate = null, DateTime? maxdate = null, Order? order = null);
+        Task<StacManResponse<SuggestedEdit>> GetMySuggestedEdits(string site, string access_token, string? filter = default, int? page = default, int? pagesize = default, DateTime? fromdate = default, DateTime? todate = default, SuggestedEdits.Sort sort = default, DateTime? mindate = default, DateTime? maxdate = default, Order? order = default);
 
         /// <summary>
         /// Get the tags that the users (identified by a set of ids) have been active in. (API Method: "/users/{ids}/tags")
         /// </summary>
-        Task<StacManResponse<Tag>> GetTags(string site, IEnumerable<int> ids, string filter = null, int? page = null, int? pagesize = null, DateTime? fromdate = null, DateTime? todate = null, Tags.Sort? sort = null, int? min = null, int? max = null, DateTime? mindate = null, DateTime? maxdate = null, string minname = null, string maxname = null, Order? order = null);
+        Task<StacManResponse<Tag>> GetTags(string site, IEnumerable<int> ids, string? filter = default, int? page = default, int? pagesize = default, DateTime? fromdate = default, DateTime? todate = default, Tags.Sort sort = default, int? min = default, int? max = default, DateTime? mindate = default, DateTime? maxdate = default, string? minname = default, string? maxname = default, Order? order = default);
 
         /// <summary>
         /// Get the tags that the authenticated user has been active in. [auth required] (API Method: "/me/tags")
         /// </summary>
-        Task<StacManResponse<Tag>> GetMyTags(string site, string access_token, string filter = null, int? page = null, int? pagesize = null, DateTime? fromdate = null, DateTime? todate = null, Tags.Sort? sort = null, int? min = null, int? max = null, DateTime? mindate = null, DateTime? maxdate = null, string minname = null, string maxname = null, Order? order = null);
+        Task<StacManResponse<Tag>> GetMyTags(string site, string access_token, string? filter = default, int? page = default, int? pagesize = default, DateTime? fromdate = default, DateTime? todate = default, Tags.Sort sort = default, int? min = default, int? max = default, DateTime? mindate = default, DateTime? maxdate = default, string? minname = default, string? maxname = default, Order? order = default);
 
         /// <summary>
         /// Get the top answers a user has posted on questions with a set of tags. (API Method: "/users/{id}/tags/{tags}/top-answers")
         /// </summary>
-        Task<StacManResponse<Answer>> GetTopAnswers(string site, int id, IEnumerable<string> tags, string filter = null, int? page = null, int? pagesize = null, DateTime? fromdate = null, DateTime? todate = null, Answers.Sort? sort = null, DateTime? mindate = null, DateTime? maxdate = null, int? min = null, int? max = null, Order? order = null);
+        Task<StacManResponse<Answer>> GetTopAnswers(string site, int id, IEnumerable<string> tags, string? filter = default, int? page = default, int? pagesize = default, DateTime? fromdate = default, DateTime? todate = default, Answers.Sort sort = default, DateTime? mindate = default, DateTime? maxdate = default, int? min = default, int? max = default, Order? order = default);
 
         /// <summary>
         /// Get the top answers the authenticated user has posted on questions with a set of tags. [auth required] (API Method: "/me/tags/{tags}/top-answers")
         /// </summary>
-        Task<StacManResponse<Answer>> GetMyTopAnswers(string site, string access_token, IEnumerable<string> tags, string filter = null, int? page = null, int? pagesize = null, DateTime? fromdate = null, DateTime? todate = null, Answers.Sort? sort = null, DateTime? mindate = null, DateTime? maxdate = null, int? min = null, int? max = null, Order? order = null);
+        Task<StacManResponse<Answer>> GetMyTopAnswers(string site, string access_token, IEnumerable<string> tags, string? filter = default, int? page = default, int? pagesize = default, DateTime? fromdate = default, DateTime? todate = default, Answers.Sort sort = default, DateTime? mindate = default, DateTime? maxdate = default, int? min = default, int? max = default, Order? order = default);
 
         /// <summary>
         /// Get the top questions a user has posted with a set of tags. (API Method: "/users/{id}/tags/{tags}/top-questions")
         /// </summary>
-        Task<StacManResponse<Question>> GetTopQuestions(string site, int id, IEnumerable<string> tags, string filter = null, int? page = null, int? pagesize = null, DateTime? fromdate = null, DateTime? todate = null, Questions.Sort? sort = null, DateTime? mindate = null, DateTime? maxdate = null, int? min = null, int? max = null, Order? order = null);
+        Task<StacManResponse<Question>> GetTopQuestions(string site, int id, IEnumerable<string> tags, string? filter = default, int? page = default, int? pagesize = default, DateTime? fromdate = default, DateTime? todate = default, Questions.Sort sort = default, DateTime? mindate = default, DateTime? maxdate = default, int? min = default, int? max = default, Order? order = default);
 
         /// <summary>
         /// Get the top questions the authenticated user has posted with a set of tags. [auth required] (API Method: "/me/tags/{tags}/top-questions")
         /// </summary>
-        Task<StacManResponse<Question>> GetMyTopQuestions(string site, string access_token, IEnumerable<string> tags, string filter = null, int? page = null, int? pagesize = null, DateTime? fromdate = null, DateTime? todate = null, Questions.Sort? sort = null, DateTime? mindate = null, DateTime? maxdate = null, int? min = null, int? max = null, Order? order = null);
+        Task<StacManResponse<Question>> GetMyTopQuestions(string site, string access_token, IEnumerable<string> tags, string? filter = default, int? page = default, int? pagesize = default, DateTime? fromdate = default, DateTime? todate = default, Questions.Sort sort = default, DateTime? mindate = default, DateTime? maxdate = default, int? min = default, int? max = default, Order? order = default);
 
         /// <summary>
         /// Get a subset of the actions of that have been taken by the users identified by a set of ids. (API Method: "/users/{ids}/timeline")
         /// </summary>
-        Task<StacManResponse<UserTimeline>> GetTimelines(string site, IEnumerable<int> ids, string filter = null, int? page = null, int? pagesize = null, DateTime? fromdate = null, DateTime? todate = null);
+        Task<StacManResponse<UserTimeline>> GetTimelines(string site, IEnumerable<int> ids, string? filter = default, int? page = default, int? pagesize = default, DateTime? fromdate = default, DateTime? todate = default);
 
         /// <summary>
         /// Get a subset of the actions of that have been taken by the authenicated user. [auth required] (API Method: "/me/timeline")
         /// </summary>
-        Task<StacManResponse<UserTimeline>> GetMyTimeline(string site, string access_token, string filter = null, int? page = null, int? pagesize = null, DateTime? fromdate = null, DateTime? todate = null);
+        Task<StacManResponse<UserTimeline>> GetMyTimeline(string site, string access_token, string? filter = default, int? page = default, int? pagesize = default, DateTime? fromdate = default, DateTime? todate = default);
 
         /// <summary>
         /// Get the top tags (by score) a single user has posted answers in. (API Method: "/users/{id}/top-answer-tags")
         /// </summary>
-        Task<StacManResponse<TopTag>> GetTopAnswerTags(string site, int id, string filter = null, int? page = null, int? pagesize = null);
+        Task<StacManResponse<TopTag>> GetTopAnswerTags(string site, int id, string? filter = default, int? page = default, int? pagesize = default);
 
         /// <summary>
         /// Get the top tags (by score) that users identified by a set of ids have posted answers in. (API Method: "/users/{ids}/top-answer-tags") -- introduced in API version 2.1
         /// </summary>
-        Task<StacManResponse<TopTag>> GetTopAnswerTags(string site, IEnumerable<int> ids, string filter = null, int? page = null, int? pagesize = null);
+        Task<StacManResponse<TopTag>> GetTopAnswerTags(string site, IEnumerable<int> ids, string? filter = default, int? page = default, int? pagesize = default);
 
         /// <summary>
         /// Get the top tags (by score) the authenticated user has posted answers in. [auth required] (API Method: "/me/top-answer-tags")
         /// </summary>
-        Task<StacManResponse<TopTag>> GetMyTopAnswerTags(string site, string access_token, string filter = null, int? page = null, int? pagesize = null);
+        Task<StacManResponse<TopTag>> GetMyTopAnswerTags(string site, string access_token, string? filter = default, int? page = default, int? pagesize = default);
 
         /// <summary>
         /// Get the top tags (by score) a single user has asked questions in. (API Method: "/users/{id}/top-question-tags")
         /// </summary>
-        Task<StacManResponse<TopTag>> GetTopQuestionTags(string site, int id, string filter = null, int? page = null, int? pagesize = null);
+        Task<StacManResponse<TopTag>> GetTopQuestionTags(string site, int id, string? filter = default, int? page = default, int? pagesize = default);
 
         /// <summary>
         /// Get the top tags (by score) that users identified by a set of ids have asked questions in. (API Method: "/users/{ids}/top-question-tags") -- introduced in API version 2.1
         /// </summary>
-        Task<StacManResponse<TopTag>> GetTopQuestionTags(string site, IEnumerable<int> ids, string filter = null, int? page = null, int? pagesize = null);
+        Task<StacManResponse<TopTag>> GetTopQuestionTags(string site, IEnumerable<int> ids, string? filter = default, int? page = default, int? pagesize = default);
 
         /// <summary>
         /// Get the top tags (by score) the authenticated user has asked questions in. [auth required] (API Method: "/me/top-question-tags")
         /// </summary>
-        Task<StacManResponse<TopTag>> GetMyTopQuestionTags(string site, string access_token, string filter = null, int? page = null, int? pagesize = null);
+        Task<StacManResponse<TopTag>> GetMyTopQuestionTags(string site, string access_token, string? filter = default, int? page = default, int? pagesize = default);
 
         /// <summary>
         /// Get the write access a user has via the API. (API Method: "/users/{id}/write-permissions") -- introduced in API version 2.1
         /// </summary>
-        Task<StacManResponse<WritePermission>> GetWritePermissions(string site, int id, string filter = null, int? page = null, int? pagesize = null);
+        Task<StacManResponse<WritePermission>> GetWritePermissions(string site, int id, string? filter = default, int? page = default, int? pagesize = default);
 
         /// <summary>
         /// Get the write access the authenticated user has via the API. [auth required] (API Method: "/me/write-permissions") -- introduced in API version 2.1
         /// </summary>
-        Task<StacManResponse<WritePermission>> GetMyWritePermissions(string site, string access_token, string filter = null, int? page = null, int? pagesize = null);
+        Task<StacManResponse<WritePermission>> GetMyWritePermissions(string site, string access_token, string? filter = default, int? page = default, int? pagesize = default);
 
         /// <summary>
         /// Get the users who have moderation powers on the site. (API Method: "/users/moderators")
         /// </summary>
-        Task<StacManResponse<User>> GetModerators(string site, string filter = null, int? page = null, int? pagesize = null, DateTime? fromdate = null, DateTime? todate = null, Users.Sort? sort = null, int? min = null, int? max = null, DateTime? mindate = null, DateTime? maxdate = null, string minname = null, string maxname = null, Order? order = null);
+        Task<StacManResponse<User>> GetModerators(string site, string? filter = default, int? page = default, int? pagesize = default, DateTime? fromdate = default, DateTime? todate = default, Users.Sort sort = default, int? min = default, int? max = default, DateTime? mindate = default, DateTime? maxdate = default, string? minname = default, string? maxname = default, Order? order = default);
 
         /// <summary>
         /// Get the users who have moderation powers on the site, and were actually elected. (API Method: "/users/moderators/elected")
         /// </summary>
-        Task<StacManResponse<User>> GetElectedModerators(string site, string filter = null, int? page = null, int? pagesize = null, DateTime? fromdate = null, DateTime? todate = null, Users.Sort? sort = null, int? min = null, int? max = null, DateTime? mindate = null, DateTime? maxdate = null, string minname = null, string maxname = null, Order? order = null);
+        Task<StacManResponse<User>> GetElectedModerators(string site, string? filter = default, int? page = default, int? pagesize = default, DateTime? fromdate = default, DateTime? todate = default, Users.Sort sort = default, int? min = default, int? max = default, DateTime? mindate = default, DateTime? maxdate = default, string? minname = default, string? maxname = default, Order? order = default);
 
         /// <summary>
         /// Get a user's inbox. [auth required] (API Method: "/users/{id}/inbox")
         /// </summary>
-        Task<StacManResponse<InboxItem>> GetInbox(string site, string access_token, int id, string filter = null, int? page = null, int? pagesize = null);
+        Task<StacManResponse<InboxItem>> GetInbox(string site, string access_token, int id, string? filter = default, int? page = default, int? pagesize = default);
 
         /// <summary>
         /// Get the authenticated user's inbox. [auth required] (API Method: "/me/inbox")
         /// </summary>
-        Task<StacManResponse<InboxItem>> GetMyInbox(string site, string access_token, string filter = null, int? page = null, int? pagesize = null);
+        Task<StacManResponse<InboxItem>> GetMyInbox(string site, string access_token, string? filter = default, int? page = default, int? pagesize = default);
 
         /// <summary>
         /// Get the unread items in a user's inbox. [auth required] (API Method: "/users/{id}/inbox/unread")
         /// </summary>
-        Task<StacManResponse<InboxItem>> GetInboxUnread(string site, string access_token, int id, string filter = null, int? page = null, int? pagesize = null, DateTime? since = null);
+        Task<StacManResponse<InboxItem>> GetInboxUnread(string site, string access_token, int id, string? filter = default, int? page = default, int? pagesize = default, DateTime? since = default);
 
         /// <summary>
         /// Get the unread items in the authenticated user's inbox. [auth required] (API Method: "/me/inbox/unread")
         /// </summary>
-        Task<StacManResponse<InboxItem>> GetMyInboxUnread(string site, string access_token, string filter = null, int? page = null, int? pagesize = null, DateTime? since = null);
+        Task<StacManResponse<InboxItem>> GetMyInboxUnread(string site, string access_token, string? filter = default, int? page = default, int? pagesize = default, DateTime? since = default);
 
         /// <summary>
         /// Get a user's associated accounts. (API Method: "/users/{ids}/associated")
         /// </summary>
-        Task<StacManResponse<NetworkUser>> GetAssociated(IEnumerable<int> ids, string filter = null, int? page = null, int? pagesize = null);
+        Task<StacManResponse<NetworkUser>> GetAssociated(IEnumerable<int> ids, string? filter = default, int? page = default, int? pagesize = default);
 
         /// <summary>
         /// Get the associated user's associated accounts. [auth required] (API Method: "/me/associated")
         /// </summary>
-        Task<StacManResponse<NetworkUser>> GetMyAssociated(string access_token, string filter = null, int? page = null, int? pagesize = null);
+        Task<StacManResponse<NetworkUser>> GetMyAssociated(string access_token, string? filter = default, int? page = default, int? pagesize = default);
 
     }
 }

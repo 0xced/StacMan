@@ -27,7 +27,9 @@ namespace StackExchange.StacMan.Tests
             var result21 = client21.Answers.GetAll("stackoverflow.com", pagesize: 1, order: Order.Desc, sort: Answers.Sort.Activity, filter: "!9hnGsz84b").Result;
 
             Assert.IsTrue(result20.Success);
+            Assert.IsNotNull(result20.Data);
             Assert.IsTrue(result21.Success);
+            Assert.IsNotNull(result21.Data);
 
             var answer20 = result20.Data.Items.Single();
             var answer21 = result21.Data.Items.Single();
@@ -49,6 +51,7 @@ namespace StackExchange.StacMan.Tests
 
             var result = client.Users.GetMerges(new[] { 1450259 }).Result;
             Assert.IsTrue(result.Success);
+            Assert.IsNotNull(result.Data);
 
             var merge = result.Data.Items.Single();
             Assert.AreEqual(2885329, merge.OldAccountId);
@@ -76,7 +79,9 @@ namespace StackExchange.StacMan.Tests
             var resultVectorized = client.Users.GetTopAnswerTags("stackoverflow.com", new[] { 1, 3 }, pagesize: 3).Result;
 
             Assert.IsTrue(result.Success);
+            Assert.IsNotNull(result.Data);
             Assert.IsTrue(resultVectorized.Success);
+            Assert.IsNotNull(resultVectorized.Data);
 
             Assert.AreEqual(1, result.Data.Items.Select(i => i.UserId).Distinct().Count());
             Assert.AreEqual(2, resultVectorized.Data.Items.Select(i => i.UserId).Distinct().Count());
@@ -104,6 +109,7 @@ namespace StackExchange.StacMan.Tests
 
             var result = client.Questions.GetByIds("stackoverflow", new[] { 7399584 }, order: Order.Desc, sort: Questions.Sort.Activity, filter: "!9hnGsqOrt").Result;
             Assert.IsTrue(result.Success);
+            Assert.IsNotNull(result.Data);
 
             var question = result.Data.Items.Single();
             Assert.IsNotNull(question.Notice);
@@ -124,6 +130,7 @@ namespace StackExchange.StacMan.Tests
 
             var result = client.Users.GetReputationHistory("stackoverflow", new[] { 2749 }, pagesize: 3).Result;
             Assert.IsTrue(result.Success);
+            Assert.IsNotNull(result.Data);
 
             var second = result.Data.Items[1];
             Assert.AreEqual(2749, second.UserId);
@@ -145,6 +152,7 @@ namespace StackExchange.StacMan.Tests
 
             var result = client.Posts.AddComment("stackoverflow", "access_token_123", 4490791, "This is a comment that I'm adding via the API!", preview: true).Result;
             Assert.IsTrue(result.Success);
+            Assert.IsNotNull(result.Data);
 
             var comment = result.Data.Items.Single();
             Assert.AreEqual(4490791, comment.PostId);
@@ -162,6 +170,7 @@ namespace StackExchange.StacMan.Tests
 
             var result = client.Comments.Delete("stackoverflow", "access_token_123", 4721972).Result;
             Assert.IsTrue(result.Success);
+            Assert.IsNotNull(result.Data);
 
             Assert.AreEqual(0, result.Data.Items.Length);
             Assert.AreEqual(10000, result.Data.QuotaMax);

@@ -22,6 +22,7 @@ namespace StackExchange.StacMan.Tests
             var result = client.Badges.GetAll("stackoverflow", page: 2, pagesize: 5, filter: "!*bOpvmsY(F)").Result;
             var wrapper = result.Data;
 
+            Assert.IsNotNull(wrapper);
             Assert.AreEqual(1713, wrapper.Total);
             Assert.AreEqual(5, wrapper.PageSize);
             Assert.AreEqual(2, wrapper.Page);

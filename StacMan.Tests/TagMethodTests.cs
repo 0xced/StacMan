@@ -20,6 +20,7 @@ namespace StackExchange.StacMan.Tests
 
             var result = client.Tags.GetAll("gaming", page: 3, pagesize: 2, order: Order.Desc, sort: Tags.Sort.Popular).Result;
             Assert.IsTrue(result.Success);
+            Assert.IsNotNull(result.Data);
 
             var tag = result.Data.Items.Skip(1).First();
 

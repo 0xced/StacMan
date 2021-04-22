@@ -10,6 +10,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 
+#nullable enable
+
 namespace StackExchange.StacMan
 {
     public partial class StacManClient : IPrivilegeMethods
@@ -22,7 +24,7 @@ namespace StackExchange.StacMan
             get { return this; }
         }
 
-        Task<StacManResponse<Privilege>> IPrivilegeMethods.GetAll(string site, string filter, int? page, int? pagesize)
+        Task<StacManResponse<Privilege>> IPrivilegeMethods.GetAll(string site, string? filter, int? page, int? pagesize)
         {
             ValidateString(site, "site");
             ValidatePaging(page, pagesize);
@@ -46,7 +48,7 @@ namespace StackExchange.StacMan
         /// <summary>
         /// Get all the privileges available on the site. (API Method: "/privileges")
         /// </summary>
-        Task<StacManResponse<Privilege>> GetAll(string site, string filter = null, int? page = null, int? pagesize = null);
+        Task<StacManResponse<Privilege>> GetAll(string site, string? filter = default, int? page = default, int? pagesize = default);
 
     }
 }

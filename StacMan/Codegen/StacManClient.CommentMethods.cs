@@ -10,6 +10,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 
+#nullable enable
+
 namespace StackExchange.StacMan
 {
     public partial class StacManClient : ICommentMethods
@@ -22,7 +24,7 @@ namespace StackExchange.StacMan
             get { return this; }
         }
 
-        Task<StacManResponse<Comment>> ICommentMethods.GetAll(string site, string filter, int? page, int? pagesize, DateTime? fromdate, DateTime? todate, Comments.Sort? sort, DateTime? mindate, DateTime? maxdate, int? min, int? max, Order? order)
+        Task<StacManResponse<Comment>> ICommentMethods.GetAll(string site, string? filter, int? page, int? pagesize, DateTime? fromdate, DateTime? todate, Comments.Sort sort, DateTime? mindate, DateTime? maxdate, int? min, int? max, Order? order)
         {
             ValidateString(site, "site");
             ValidatePaging(page, pagesize);
@@ -46,7 +48,7 @@ namespace StackExchange.StacMan
             return CreateApiTask<Comment>(ub, HttpMethod.GET, "/comments");
         }
 
-        Task<StacManResponse<Comment>> ICommentMethods.GetByIds(string site, IEnumerable<int> ids, string filter, int? page, int? pagesize, DateTime? fromdate, DateTime? todate, Comments.Sort? sort, DateTime? mindate, DateTime? maxdate, int? min, int? max, Order? order)
+        Task<StacManResponse<Comment>> ICommentMethods.GetByIds(string site, IEnumerable<int> ids, string? filter, int? page, int? pagesize, DateTime? fromdate, DateTime? todate, Comments.Sort sort, DateTime? mindate, DateTime? maxdate, int? min, int? max, Order? order)
         {
             ValidateString(site, "site");
             ValidateEnumerable(ids, "ids");
@@ -71,7 +73,7 @@ namespace StackExchange.StacMan
             return CreateApiTask<Comment>(ub, HttpMethod.GET, "/comments/{ids}");
         }
 
-        Task<StacManResponse<Comment>> ICommentMethods.Delete(string site, string access_token, int id, string filter, bool? preview)
+        Task<StacManResponse<Comment>> ICommentMethods.Delete(string site, string access_token, int id, string? filter, bool? preview)
         {
             ValidateString(site, "site");
             ValidateString(access_token, "access_token");
@@ -87,7 +89,7 @@ namespace StackExchange.StacMan
             return CreateApiTask<Comment>(ub, HttpMethod.POST, "/comments/{id}/delete");
         }
 
-        Task<StacManResponse<Comment>> ICommentMethods.Edit(string site, string access_token, int id, string body, string filter, bool? preview)
+        Task<StacManResponse<Comment>> ICommentMethods.Edit(string site, string access_token, int id, string body, string? filter, bool? preview)
         {
             ValidateString(site, "site");
             ValidateString(access_token, "access_token");
@@ -114,22 +116,22 @@ namespace StackExchange.StacMan
         /// <summary>
         /// Get all comments on the site. (API Method: "/comments")
         /// </summary>
-        Task<StacManResponse<Comment>> GetAll(string site, string filter = null, int? page = null, int? pagesize = null, DateTime? fromdate = null, DateTime? todate = null, Comments.Sort? sort = null, DateTime? mindate = null, DateTime? maxdate = null, int? min = null, int? max = null, Order? order = null);
+        Task<StacManResponse<Comment>> GetAll(string site, string? filter = default, int? page = default, int? pagesize = default, DateTime? fromdate = default, DateTime? todate = default, Comments.Sort sort = default, DateTime? mindate = default, DateTime? maxdate = default, int? min = default, int? max = default, Order? order = default);
 
         /// <summary>
         /// Get comments identified by a set of ids. (API Method: "/comments/{ids}")
         /// </summary>
-        Task<StacManResponse<Comment>> GetByIds(string site, IEnumerable<int> ids, string filter = null, int? page = null, int? pagesize = null, DateTime? fromdate = null, DateTime? todate = null, Comments.Sort? sort = null, DateTime? mindate = null, DateTime? maxdate = null, int? min = null, int? max = null, Order? order = null);
+        Task<StacManResponse<Comment>> GetByIds(string site, IEnumerable<int> ids, string? filter = default, int? page = default, int? pagesize = default, DateTime? fromdate = default, DateTime? todate = default, Comments.Sort sort = default, DateTime? mindate = default, DateTime? maxdate = default, int? min = default, int? max = default, Order? order = default);
 
         /// <summary>
         /// Delete a comment identified by its id. [auth required] (API Method: "/comments/{id}/delete") -- introduced in API version 2.1
         /// </summary>
-        Task<StacManResponse<Comment>> Delete(string site, string access_token, int id, string filter = null, bool? preview = null);
+        Task<StacManResponse<Comment>> Delete(string site, string access_token, int id, string? filter = default, bool? preview = default);
 
         /// <summary>
         /// Edit a comment identified by its id. [auth required] (API Method: "/comments/{id}/edit") -- introduced in API version 2.1
         /// </summary>
-        Task<StacManResponse<Comment>> Edit(string site, string access_token, int id, string body, string filter = null, bool? preview = null);
+        Task<StacManResponse<Comment>> Edit(string site, string access_token, int id, string body, string? filter = default, bool? preview = default);
 
     }
 }

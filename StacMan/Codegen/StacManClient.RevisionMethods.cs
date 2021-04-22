@@ -10,6 +10,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 
+#nullable enable
+
 namespace StackExchange.StacMan
 {
     public partial class StacManClient : IRevisionMethods
@@ -22,7 +24,7 @@ namespace StackExchange.StacMan
             get { return this; }
         }
 
-        Task<StacManResponse<Revision>> IRevisionMethods.GetByIds(string site, IEnumerable<Guid> ids, string filter, int? page, int? pagesize, DateTime? fromdate, DateTime? todate)
+        Task<StacManResponse<Revision>> IRevisionMethods.GetByIds(string site, IEnumerable<Guid> ids, string? filter, int? page, int? pagesize, DateTime? fromdate, DateTime? todate)
         {
             ValidateString(site, "site");
             ValidateEnumerable(ids, "ids");
@@ -49,7 +51,7 @@ namespace StackExchange.StacMan
         /// <summary>
         /// Get all revisions identified by a set of ids. (API Method: "/revisions/{ids}")
         /// </summary>
-        Task<StacManResponse<Revision>> GetByIds(string site, IEnumerable<Guid> ids, string filter = null, int? page = null, int? pagesize = null, DateTime? fromdate = null, DateTime? todate = null);
+        Task<StacManResponse<Revision>> GetByIds(string site, IEnumerable<Guid> ids, string? filter = default, int? page = default, int? pagesize = default, DateTime? fromdate = default, DateTime? todate = default);
 
     }
 }

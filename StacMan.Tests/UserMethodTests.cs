@@ -20,6 +20,7 @@ namespace StackExchange.StacMan.Tests
 
             var result = client.Users.GetAll("webapps", pagesize: 1, order: Order.Desc, min: 1, max: 1000, sort: Users.Sort.Reputation, inname: "doug").Result;
             Assert.IsTrue(result.Success);
+            Assert.IsNotNull(result.Data);
 
             var user = result.Data.Items.Single();
             Assert.AreEqual(183, user.UserId);
@@ -59,6 +60,7 @@ namespace StackExchange.StacMan.Tests
 
             var result = client.Users.GetAssociated(new[] { 1998 }, pagesize: 2).Result;
             Assert.IsTrue(result.Success);
+            Assert.IsNotNull(result.Data);
 
             var networkUser = result.Data.Items.First();
             Assert.AreEqual("Stack Overflow", networkUser.SiteName);

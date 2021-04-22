@@ -10,6 +10,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 
+#nullable enable
+
 namespace StackExchange.StacMan
 {
     public partial class StacManClient : ITagMethods
@@ -22,7 +24,7 @@ namespace StackExchange.StacMan
             get { return this; }
         }
 
-        Task<StacManResponse<Tag>> ITagMethods.GetAll(string site, string filter, int? page, int? pagesize, DateTime? fromdate, DateTime? todate, Tags.Sort? sort, int? min, int? max, DateTime? mindate, DateTime? maxdate, string minname, string maxname, Order? order, string inname)
+        Task<StacManResponse<Tag>> ITagMethods.GetAll(string site, string? filter, int? page, int? pagesize, DateTime? fromdate, DateTime? todate, Tags.Sort sort, int? min, int? max, DateTime? mindate, DateTime? maxdate, string? minname, string? maxname, Order? order, string? inname)
         {
             ValidateString(site, "site");
             ValidatePaging(page, pagesize);
@@ -49,7 +51,7 @@ namespace StackExchange.StacMan
             return CreateApiTask<Tag>(ub, HttpMethod.GET, "/tags");
         }
 
-        Task<StacManResponse<Tag>> ITagMethods.GetByName(string site, IEnumerable<string> tags, string filter, int? page, int? pagesize, DateTime? fromdate, DateTime? todate, Tags.Sort? sort, int? min, int? max, DateTime? mindate, DateTime? maxdate, string minname, string maxname, Order? order)
+        Task<StacManResponse<Tag>> ITagMethods.GetByName(string site, IEnumerable<string> tags, string? filter, int? page, int? pagesize, DateTime? fromdate, DateTime? todate, Tags.Sort sort, int? min, int? max, DateTime? mindate, DateTime? maxdate, string? minname, string? maxname, Order? order)
         {
             ValidateString(site, "site");
             ValidateEnumerable(tags, "tags");
@@ -76,7 +78,7 @@ namespace StackExchange.StacMan
             return CreateApiTask<Tag>(ub, HttpMethod.GET, "/tags/{tags}/info");
         }
 
-        Task<StacManResponse<Tag>> ITagMethods.GetModeratorOnly(string site, string filter, int? page, int? pagesize, DateTime? fromdate, DateTime? todate, Tags.Sort? sort, int? min, int? max, DateTime? mindate, DateTime? maxdate, string minname, string maxname, Order? order, string inname)
+        Task<StacManResponse<Tag>> ITagMethods.GetModeratorOnly(string site, string? filter, int? page, int? pagesize, DateTime? fromdate, DateTime? todate, Tags.Sort sort, int? min, int? max, DateTime? mindate, DateTime? maxdate, string? minname, string? maxname, Order? order, string? inname)
         {
             ValidateString(site, "site");
             ValidatePaging(page, pagesize);
@@ -103,7 +105,7 @@ namespace StackExchange.StacMan
             return CreateApiTask<Tag>(ub, HttpMethod.GET, "/tags/moderator-only");
         }
 
-        Task<StacManResponse<Tag>> ITagMethods.GetRequired(string site, string filter, int? page, int? pagesize, DateTime? fromdate, DateTime? todate, Tags.Sort? sort, int? min, int? max, DateTime? mindate, DateTime? maxdate, string minname, string maxname, Order? order, string inname)
+        Task<StacManResponse<Tag>> ITagMethods.GetRequired(string site, string? filter, int? page, int? pagesize, DateTime? fromdate, DateTime? todate, Tags.Sort sort, int? min, int? max, DateTime? mindate, DateTime? maxdate, string? minname, string? maxname, Order? order, string? inname)
         {
             ValidateString(site, "site");
             ValidatePaging(page, pagesize);
@@ -130,7 +132,7 @@ namespace StackExchange.StacMan
             return CreateApiTask<Tag>(ub, HttpMethod.GET, "/tags/required");
         }
 
-        Task<StacManResponse<TagSynonym>> ITagMethods.GetAllSynonyms(string site, string filter, int? page, int? pagesize, DateTime? fromdate, DateTime? todate, TagSynonyms.Sort? sort, DateTime? mindate, DateTime? maxdate, int? min, int? max, Order? order)
+        Task<StacManResponse<TagSynonym>> ITagMethods.GetAllSynonyms(string site, string? filter, int? page, int? pagesize, DateTime? fromdate, DateTime? todate, TagSynonyms.Sort sort, DateTime? mindate, DateTime? maxdate, int? min, int? max, Order? order)
         {
             ValidateString(site, "site");
             ValidatePaging(page, pagesize);
@@ -154,7 +156,7 @@ namespace StackExchange.StacMan
             return CreateApiTask<TagSynonym>(ub, HttpMethod.GET, "/tags/synonyms");
         }
 
-        Task<StacManResponse<Question>> ITagMethods.GetFrequentlyAsked(string site, IEnumerable<string> tags, string filter, int? page, int? pagesize)
+        Task<StacManResponse<Question>> ITagMethods.GetFrequentlyAsked(string site, IEnumerable<string> tags, string? filter, int? page, int? pagesize)
         {
             ValidateString(site, "site");
             ValidateEnumerable(tags, "tags");
@@ -170,7 +172,7 @@ namespace StackExchange.StacMan
             return CreateApiTask<Question>(ub, HttpMethod.GET, "/tags/{tags}/faq");
         }
 
-        Task<StacManResponse<Tag>> ITagMethods.GetRelated(string site, IEnumerable<string> tags, string filter, int? page, int? pagesize)
+        Task<StacManResponse<Tag>> ITagMethods.GetRelated(string site, IEnumerable<string> tags, string? filter, int? page, int? pagesize)
         {
             ValidateString(site, "site");
             ValidateEnumerable(tags, "tags");
@@ -186,7 +188,7 @@ namespace StackExchange.StacMan
             return CreateApiTask<Tag>(ub, HttpMethod.GET, "/tags/{tags}/related");
         }
 
-        Task<StacManResponse<TagSynonym>> ITagMethods.GetSynonymsForTags(string site, IEnumerable<string> tags, string filter, int? page, int? pagesize, DateTime? fromdate, DateTime? todate, TagSynonyms.Sort? sort, DateTime? mindate, DateTime? maxdate, int? min, int? max, Order? order)
+        Task<StacManResponse<TagSynonym>> ITagMethods.GetSynonymsForTags(string site, IEnumerable<string> tags, string? filter, int? page, int? pagesize, DateTime? fromdate, DateTime? todate, TagSynonyms.Sort sort, DateTime? mindate, DateTime? maxdate, int? min, int? max, Order? order)
         {
             ValidateString(site, "site");
             ValidateEnumerable(tags, "tags");
@@ -211,7 +213,7 @@ namespace StackExchange.StacMan
             return CreateApiTask<TagSynonym>(ub, HttpMethod.GET, "/tags/{tags}/synonyms");
         }
 
-        Task<StacManResponse<TagScore>> ITagMethods.GetTopAnswerers(string site, string tag, Tags.Period period, string filter, int? page, int? pagesize)
+        Task<StacManResponse<TagScore>> ITagMethods.GetTopAnswerers(string site, string tag, Tags.Period period, string? filter, int? page, int? pagesize)
         {
             ValidateString(site, "site");
             ValidateString(tag, "tag");
@@ -227,7 +229,7 @@ namespace StackExchange.StacMan
             return CreateApiTask<TagScore>(ub, HttpMethod.GET, "/tags/{tag}/top-answerers/{period}");
         }
 
-        Task<StacManResponse<TagScore>> ITagMethods.GetTopAskers(string site, string tag, Tags.Period period, string filter, int? page, int? pagesize)
+        Task<StacManResponse<TagScore>> ITagMethods.GetTopAskers(string site, string tag, Tags.Period period, string? filter, int? page, int? pagesize)
         {
             ValidateString(site, "site");
             ValidateString(tag, "tag");
@@ -243,7 +245,7 @@ namespace StackExchange.StacMan
             return CreateApiTask<TagScore>(ub, HttpMethod.GET, "/tags/{tag}/top-askers/{period}");
         }
 
-        Task<StacManResponse<TagWiki>> ITagMethods.GetTagWikis(string site, IEnumerable<string> tags, string filter, int? page, int? pagesize)
+        Task<StacManResponse<TagWiki>> ITagMethods.GetTagWikis(string site, IEnumerable<string> tags, string? filter, int? page, int? pagesize)
         {
             ValidateString(site, "site");
             ValidateEnumerable(tags, "tags");
@@ -268,57 +270,57 @@ namespace StackExchange.StacMan
         /// <summary>
         /// Get the tags on the site. (API Method: "/tags")
         /// </summary>
-        Task<StacManResponse<Tag>> GetAll(string site, string filter = null, int? page = null, int? pagesize = null, DateTime? fromdate = null, DateTime? todate = null, Tags.Sort? sort = null, int? min = null, int? max = null, DateTime? mindate = null, DateTime? maxdate = null, string minname = null, string maxname = null, Order? order = null, string inname = null);
+        Task<StacManResponse<Tag>> GetAll(string site, string? filter = default, int? page = default, int? pagesize = default, DateTime? fromdate = default, DateTime? todate = default, Tags.Sort sort = default, int? min = default, int? max = default, DateTime? mindate = default, DateTime? maxdate = default, string? minname = default, string? maxname = default, Order? order = default, string? inname = default);
 
         /// <summary>
         /// Get tags on the site by their names. (API Method: "/tags/{tags}/info")
         /// </summary>
-        Task<StacManResponse<Tag>> GetByName(string site, IEnumerable<string> tags, string filter = null, int? page = null, int? pagesize = null, DateTime? fromdate = null, DateTime? todate = null, Tags.Sort? sort = null, int? min = null, int? max = null, DateTime? mindate = null, DateTime? maxdate = null, string minname = null, string maxname = null, Order? order = null);
+        Task<StacManResponse<Tag>> GetByName(string site, IEnumerable<string> tags, string? filter = default, int? page = default, int? pagesize = default, DateTime? fromdate = default, DateTime? todate = default, Tags.Sort sort = default, int? min = default, int? max = default, DateTime? mindate = default, DateTime? maxdate = default, string? minname = default, string? maxname = default, Order? order = default);
 
         /// <summary>
         /// Get the tags on the site that only moderators can use. (API Method: "/tags/moderator-only")
         /// </summary>
-        Task<StacManResponse<Tag>> GetModeratorOnly(string site, string filter = null, int? page = null, int? pagesize = null, DateTime? fromdate = null, DateTime? todate = null, Tags.Sort? sort = null, int? min = null, int? max = null, DateTime? mindate = null, DateTime? maxdate = null, string minname = null, string maxname = null, Order? order = null, string inname = null);
+        Task<StacManResponse<Tag>> GetModeratorOnly(string site, string? filter = default, int? page = default, int? pagesize = default, DateTime? fromdate = default, DateTime? todate = default, Tags.Sort sort = default, int? min = default, int? max = default, DateTime? mindate = default, DateTime? maxdate = default, string? minname = default, string? maxname = default, Order? order = default, string? inname = default);
 
         /// <summary>
         /// Get the tags on the site that fulfill required tag constraints. (API Method: "/tags/required")
         /// </summary>
-        Task<StacManResponse<Tag>> GetRequired(string site, string filter = null, int? page = null, int? pagesize = null, DateTime? fromdate = null, DateTime? todate = null, Tags.Sort? sort = null, int? min = null, int? max = null, DateTime? mindate = null, DateTime? maxdate = null, string minname = null, string maxname = null, Order? order = null, string inname = null);
+        Task<StacManResponse<Tag>> GetRequired(string site, string? filter = default, int? page = default, int? pagesize = default, DateTime? fromdate = default, DateTime? todate = default, Tags.Sort sort = default, int? min = default, int? max = default, DateTime? mindate = default, DateTime? maxdate = default, string? minname = default, string? maxname = default, Order? order = default, string? inname = default);
 
         /// <summary>
         /// Get all the tag synonyms on the site. (API Method: "/tags/synonyms")
         /// </summary>
-        Task<StacManResponse<TagSynonym>> GetAllSynonyms(string site, string filter = null, int? page = null, int? pagesize = null, DateTime? fromdate = null, DateTime? todate = null, TagSynonyms.Sort? sort = null, DateTime? mindate = null, DateTime? maxdate = null, int? min = null, int? max = null, Order? order = null);
+        Task<StacManResponse<TagSynonym>> GetAllSynonyms(string site, string? filter = default, int? page = default, int? pagesize = default, DateTime? fromdate = default, DateTime? todate = default, TagSynonyms.Sort sort = default, DateTime? mindate = default, DateTime? maxdate = default, int? min = default, int? max = default, Order? order = default);
 
         /// <summary>
         /// Get frequently asked questions in a set of tags. (API Method: "/tags/{tags}/faq")
         /// </summary>
-        Task<StacManResponse<Question>> GetFrequentlyAsked(string site, IEnumerable<string> tags, string filter = null, int? page = null, int? pagesize = null);
+        Task<StacManResponse<Question>> GetFrequentlyAsked(string site, IEnumerable<string> tags, string? filter = default, int? page = default, int? pagesize = default);
 
         /// <summary>
         /// /tags/{tags}/related (API Method: "/tags/{tags}/related")
         /// </summary>
-        Task<StacManResponse<Tag>> GetRelated(string site, IEnumerable<string> tags, string filter = null, int? page = null, int? pagesize = null);
+        Task<StacManResponse<Tag>> GetRelated(string site, IEnumerable<string> tags, string? filter = default, int? page = default, int? pagesize = default);
 
         /// <summary>
         /// Get the synonyms for a specific set of tags. (API Method: "/tags/{tags}/synonyms")
         /// </summary>
-        Task<StacManResponse<TagSynonym>> GetSynonymsForTags(string site, IEnumerable<string> tags, string filter = null, int? page = null, int? pagesize = null, DateTime? fromdate = null, DateTime? todate = null, TagSynonyms.Sort? sort = null, DateTime? mindate = null, DateTime? maxdate = null, int? min = null, int? max = null, Order? order = null);
+        Task<StacManResponse<TagSynonym>> GetSynonymsForTags(string site, IEnumerable<string> tags, string? filter = default, int? page = default, int? pagesize = default, DateTime? fromdate = default, DateTime? todate = default, TagSynonyms.Sort sort = default, DateTime? mindate = default, DateTime? maxdate = default, int? min = default, int? max = default, Order? order = default);
 
         /// <summary>
         /// Get the top answer posters in a specific tag, either in the last month or for all time. (API Method: "/tags/{tag}/top-answerers/{period}")
         /// </summary>
-        Task<StacManResponse<TagScore>> GetTopAnswerers(string site, string tag, Tags.Period period, string filter = null, int? page = null, int? pagesize = null);
+        Task<StacManResponse<TagScore>> GetTopAnswerers(string site, string tag, Tags.Period period, string? filter = default, int? page = default, int? pagesize = default);
 
         /// <summary>
         /// Get the top question askers in a specific tag, either in the last month or for all time. (API Method: "/tags/{tag}/top-askers/{period}")
         /// </summary>
-        Task<StacManResponse<TagScore>> GetTopAskers(string site, string tag, Tags.Period period, string filter = null, int? page = null, int? pagesize = null);
+        Task<StacManResponse<TagScore>> GetTopAskers(string site, string tag, Tags.Period period, string? filter = default, int? page = default, int? pagesize = default);
 
         /// <summary>
         /// Get the wiki entries for a set of tags. (API Method: "/tags/{tags}/wikis")
         /// </summary>
-        Task<StacManResponse<TagWiki>> GetTagWikis(string site, IEnumerable<string> tags, string filter = null, int? page = null, int? pagesize = null);
+        Task<StacManResponse<TagWiki>> GetTagWikis(string site, IEnumerable<string> tags, string? filter = default, int? page = default, int? pagesize = default);
 
     }
 }

@@ -10,6 +10,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 
+#nullable enable
+
 namespace StackExchange.StacMan
 {
     public partial class StacManClient : IFilterMethods
@@ -22,7 +24,7 @@ namespace StackExchange.StacMan
             get { return this; }
         }
 
-        Task<StacManResponse<Filter>> IFilterMethods.Read(IEnumerable<string> filters, string filter)
+        Task<StacManResponse<Filter>> IFilterMethods.Read(IEnumerable<string> filters, string? filter)
         {
             ValidateEnumerable(filters, "filters");
 
@@ -33,7 +35,7 @@ namespace StackExchange.StacMan
             return CreateApiTask<Filter>(ub, HttpMethod.GET, "/filters/{filters}");
         }
 
-        Task<StacManResponse<Filter>> IFilterMethods.Create(string filter, IEnumerable<string> include, IEnumerable<string> exclude, string @base, bool? @unsafe)
+        Task<StacManResponse<Filter>> IFilterMethods.Create(string? filter, IEnumerable<string>? include, IEnumerable<string>? exclude, string? @base, bool? @unsafe)
         {
 
             var ub = new ApiUrlBuilder(Version, "/filters/create", useHttps: false);
@@ -56,12 +58,12 @@ namespace StackExchange.StacMan
         /// <summary>
         /// Decode a set of filters, useful for debugging purposes. (API Method: "/filters/{filters}")
         /// </summary>
-        Task<StacManResponse<Filter>> Read(IEnumerable<string> filters, string filter = null);
+        Task<StacManResponse<Filter>> Read(IEnumerable<string> filters, string? filter = default);
 
         /// <summary>
         /// Create a new filter. (API Method: "/filters/create")
         /// </summary>
-        Task<StacManResponse<Filter>> Create(string filter = null, IEnumerable<string> include = null, IEnumerable<string> exclude = null, string @base = null, bool? @unsafe = null);
+        Task<StacManResponse<Filter>> Create(string? filter = default, IEnumerable<string>? include = default, IEnumerable<string>? exclude = default, string? @base = default, bool? @unsafe = default);
 
     }
 }

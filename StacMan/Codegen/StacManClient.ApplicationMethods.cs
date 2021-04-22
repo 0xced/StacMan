@@ -10,6 +10,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 
+#nullable enable
+
 namespace StackExchange.StacMan
 {
     public partial class StacManClient : IApplicationMethods
@@ -22,7 +24,7 @@ namespace StackExchange.StacMan
             get { return this; }
         }
 
-        Task<StacManResponse<AccessToken>> IApplicationMethods.Deauthenticate(IEnumerable<string> accessTokens, string filter, int? page, int? pagesize)
+        Task<StacManResponse<AccessToken>> IApplicationMethods.Deauthenticate(IEnumerable<string> accessTokens, string? filter, int? page, int? pagesize)
         {
             ValidateEnumerable(accessTokens, "accessTokens");
             ValidatePaging(page, pagesize);
@@ -45,7 +47,7 @@ namespace StackExchange.StacMan
         /// <summary>
         /// Allows an application to de-authorize itself for a set of users. (API Method: "/apps/{accessTokens}/de-authenticate")
         /// </summary>
-        Task<StacManResponse<AccessToken>> Deauthenticate(IEnumerable<string> accessTokens, string filter = null, int? page = null, int? pagesize = null);
+        Task<StacManResponse<AccessToken>> Deauthenticate(IEnumerable<string> accessTokens, string? filter = default, int? page = default, int? pagesize = default);
 
     }
 }

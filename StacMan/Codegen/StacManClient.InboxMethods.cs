@@ -10,6 +10,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 
+#nullable enable
+
 namespace StackExchange.StacMan
 {
     public partial class StacManClient : IInboxMethods
@@ -22,7 +24,7 @@ namespace StackExchange.StacMan
             get { return this; }
         }
 
-        Task<StacManResponse<InboxItem>> IInboxMethods.Get(string access_token, string filter, int? page, int? pagesize)
+        Task<StacManResponse<InboxItem>> IInboxMethods.Get(string access_token, string? filter, int? page, int? pagesize)
         {
             ValidateString(access_token, "access_token");
             ValidatePaging(page, pagesize);
@@ -37,7 +39,7 @@ namespace StackExchange.StacMan
             return CreateApiTask<InboxItem>(ub, HttpMethod.GET, "/inbox");
         }
 
-        Task<StacManResponse<InboxItem>> IInboxMethods.GetUnread(string access_token, string filter, int? page, int? pagesize, DateTime? since)
+        Task<StacManResponse<InboxItem>> IInboxMethods.GetUnread(string access_token, string? filter, int? page, int? pagesize, DateTime? since)
         {
             ValidateString(access_token, "access_token");
             ValidatePaging(page, pagesize);
@@ -62,12 +64,12 @@ namespace StackExchange.StacMan
         /// <summary>
         /// Get a user's inbox, outside of the context of a site. [auth required] (API Method: "/inbox")
         /// </summary>
-        Task<StacManResponse<InboxItem>> Get(string access_token, string filter = null, int? page = null, int? pagesize = null);
+        Task<StacManResponse<InboxItem>> Get(string access_token, string? filter = default, int? page = default, int? pagesize = default);
 
         /// <summary>
         /// Get the unread items in a user's inbox, outside of the context of a site. [auth required] (API Method: "/inbox/unread")
         /// </summary>
-        Task<StacManResponse<InboxItem>> GetUnread(string access_token, string filter = null, int? page = null, int? pagesize = null, DateTime? since = null);
+        Task<StacManResponse<InboxItem>> GetUnread(string access_token, string? filter = default, int? page = default, int? pagesize = default, DateTime? since = default);
 
     }
 }

@@ -10,6 +10,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 
+#nullable enable
+
 namespace StackExchange.StacMan
 {
     public partial class StacManClient : INotificationMethods
@@ -22,7 +24,7 @@ namespace StackExchange.StacMan
             get { return this; }
         }
 
-        Task<StacManResponse<Notification>> INotificationMethods.Get(string access_token, string filter, int? page, int? pagesize)
+        Task<StacManResponse<Notification>> INotificationMethods.Get(string access_token, string? filter, int? page, int? pagesize)
         {
             ValidateString(access_token, "access_token");
             ValidateMinApiVersion("2.1");
@@ -38,7 +40,7 @@ namespace StackExchange.StacMan
             return CreateApiTask<Notification>(ub, HttpMethod.GET, "/notifications");
         }
 
-        Task<StacManResponse<Notification>> INotificationMethods.GetUnread(string access_token, string filter, int? page, int? pagesize)
+        Task<StacManResponse<Notification>> INotificationMethods.GetUnread(string access_token, string? filter, int? page, int? pagesize)
         {
             ValidateString(access_token, "access_token");
             ValidateMinApiVersion("2.1");
@@ -63,12 +65,12 @@ namespace StackExchange.StacMan
         /// <summary>
         /// Get a user's notifications, outside of the context of a site. [auth required] (API Method: "/notifications") -- introduced in API version 2.1
         /// </summary>
-        Task<StacManResponse<Notification>> Get(string access_token, string filter = null, int? page = null, int? pagesize = null);
+        Task<StacManResponse<Notification>> Get(string access_token, string? filter = default, int? page = default, int? pagesize = default);
 
         /// <summary>
         /// Get a user's unread notifications, outside of the context of a site. [auth required] (API Method: "/notifications/unread") -- introduced in API version 2.1
         /// </summary>
-        Task<StacManResponse<Notification>> GetUnread(string access_token, string filter = null, int? page = null, int? pagesize = null);
+        Task<StacManResponse<Notification>> GetUnread(string access_token, string? filter = default, int? page = default, int? pagesize = default);
 
     }
 }

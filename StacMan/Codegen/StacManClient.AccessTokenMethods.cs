@@ -10,6 +10,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 
+#nullable enable
+
 namespace StackExchange.StacMan
 {
     public partial class StacManClient : IAccessTokenMethods
@@ -22,7 +24,7 @@ namespace StackExchange.StacMan
             get { return this; }
         }
 
-        Task<StacManResponse<AccessToken>> IAccessTokenMethods.Invalidate(IEnumerable<string> accessTokens, string filter, int? page, int? pagesize)
+        Task<StacManResponse<AccessToken>> IAccessTokenMethods.Invalidate(IEnumerable<string> accessTokens, string? filter, int? page, int? pagesize)
         {
             ValidateEnumerable(accessTokens, "accessTokens");
             ValidatePaging(page, pagesize);
@@ -36,7 +38,7 @@ namespace StackExchange.StacMan
             return CreateApiTask<AccessToken>(ub, HttpMethod.GET, "/access-tokens/{accessTokens}/invalidate");
         }
 
-        Task<StacManResponse<AccessToken>> IAccessTokenMethods.Get(IEnumerable<string> accessTokens, string filter, int? page, int? pagesize)
+        Task<StacManResponse<AccessToken>> IAccessTokenMethods.Get(IEnumerable<string> accessTokens, string? filter, int? page, int? pagesize)
         {
             ValidateEnumerable(accessTokens, "accessTokens");
             ValidatePaging(page, pagesize);
@@ -59,12 +61,12 @@ namespace StackExchange.StacMan
         /// <summary>
         /// Allows an application to dispose of access_tokens when it is done with them. (API Method: "/access-tokens/{accessTokens}/invalidate")
         /// </summary>
-        Task<StacManResponse<AccessToken>> Invalidate(IEnumerable<string> accessTokens, string filter = null, int? page = null, int? pagesize = null);
+        Task<StacManResponse<AccessToken>> Invalidate(IEnumerable<string> accessTokens, string? filter = default, int? page = default, int? pagesize = default);
 
         /// <summary>
         /// Allows an application to inspect access_tokens it has, useful for debugging. (API Method: "/access-tokens/{accessTokens}")
         /// </summary>
-        Task<StacManResponse<AccessToken>> Get(IEnumerable<string> accessTokens, string filter = null, int? page = null, int? pagesize = null);
+        Task<StacManResponse<AccessToken>> Get(IEnumerable<string> accessTokens, string? filter = default, int? page = default, int? pagesize = default);
 
     }
 }

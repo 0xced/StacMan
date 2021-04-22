@@ -21,7 +21,7 @@ namespace StackExchange.StacMan.Tests
         public void Invalidates_null_or_empty_site()
         {
             Client.Users.GetByIds("stackoverflow", new[] { 1, 2, 3 });
-            Assert2.ThrowsArgumentNullException(() => Client.Users.GetByIds(null, new[] { 1, 2, 3 }), "site");
+            Assert2.ThrowsArgumentNullException(() => Client.Users.GetByIds(null!, new[] { 1, 2, 3 }), "site");
             Assert2.ThrowsArgumentException(() => Client.Users.GetByIds(String.Empty, new[] { 1, 2, 3 }), "site");
         }
 
@@ -29,11 +29,11 @@ namespace StackExchange.StacMan.Tests
         public void Invalidates_null_or_empty_vector()
         {
             Client.Users.GetByIds("stackoverflow", new[] { 1, 2, 3 });
-            Assert2.ThrowsArgumentNullException(() => Client.Users.GetByIds("stackoverflow", null), "ids");
+            Assert2.ThrowsArgumentNullException(() => Client.Users.GetByIds("stackoverflow", null!), "ids");
             Assert2.ThrowsArgumentException(() => Client.Users.GetByIds("stackoverflow", new int[0]), "ids");
 
             Client.Filters.Read(new[] { "foo", "bar", "baz" });
-            Assert2.ThrowsArgumentNullException(() => Client.Filters.Read(null), "filters");
+            Assert2.ThrowsArgumentNullException(() => Client.Filters.Read(null!), "filters");
             Assert2.ThrowsArgumentException(() => Client.Filters.Read(new string[0]), "filters");
         }
 

@@ -19,7 +19,7 @@ namespace StackExchange.StacMan
         /// </summary>
         /// <param name="key">Your app's Stack Exchange API V2 key (optional)</param>
         /// <param name="version">Stack Exchange API version, e.g. "2.0" or "2.1"</param>
-        public StacManClient(string key = null, string version = "2.0")
+        public StacManClient(string? key = null, string version = "2.0")
         {
             Key = key;
             Version = version;
@@ -28,7 +28,7 @@ namespace StackExchange.StacMan
             RespectBackoffs = true;
         }
 
-        private readonly string Key;
+        private readonly string? Key;
         private readonly string Version;
 
         private readonly IDictionary<string, DateTime> BackoffUntil = new Dictionary<string, DateTime>();
@@ -148,9 +148,9 @@ namespace StackExchange.StacMan
 
         private void GetApiResponse<T>(ApiUrlBuilder ub, HttpMethod httpMethod, string backoffKey, Action<StacManResponse<T>> callback) where T : StacManType
         {
-            var response = new StacManResponse<T>();
-
             ub.AddParameter("key", Key);
+
+            var response = new StacManResponse<T>(httpMethod == HttpMethod.POST ? ub.BaseUrl : ub.ToString());
 
             Action<string> successCallback = rawData =>
                 {
@@ -173,12 +173,9 @@ namespace StackExchange.StacMan
 
                         if (response.Data.ErrorId.HasValue)
                             throw new Exceptions.StackExchangeApiException(response.Data.ErrorId.Value, response.Data.ErrorName, response.Data.ErrorMessage);
-
-                        response.Success = true;
                     }
                     catch (Exception ex)
                     {
-                        response.Success = false;
                         response.Error = ex;
                     }
 
@@ -187,19 +184,16 @@ namespace StackExchange.StacMan
 
             Action<Exception> errorCallback = ex =>
                 {
-                    response.Success = false;
                     response.Error = ex;
                     callback(response);
                 };
 
             if (httpMethod == HttpMethod.POST)
             {
-                response.ApiUrl = ub.BaseUrl;
                 FetchApiResponseWithPOST(response.ApiUrl, ub.QueryString(), successCallback, errorCallback);
             }
             else
             {
-                response.ApiUrl = ub.ToString();
                 FetchApiResponseWithGET(response.ApiUrl, successCallback, errorCallback);
             }
         }
@@ -220,7 +214,7 @@ namespace StackExchange.StacMan
                 {
                     try
                     {
-                        using (var response = ((HttpWebRequest)asyncResult.AsyncState).EndGetResponse(asyncResult))
+                        using (var response = ((HttpWebRequest)asyncResult.AsyncState!).EndGetResponse(asyncResult))
                         using (var stream = response.GetResponseStream())
                         using (var reader = new StreamReader(stream))
                         {
@@ -273,7 +267,7 @@ namespace StackExchange.StacMan
                 {
                     try
                     {
-                        var req = (HttpWebRequest)asyncResult.AsyncState;
+                        var req = (HttpWebRequest)asyncResult.AsyncState!;
 
                         using (var requestStream = req.EndGetRequestStream(asyncResult))
                         {
@@ -285,7 +279,7 @@ namespace StackExchange.StacMan
                             {
                                 try
                                 {
-                                    var req2 = (HttpWebRequest)asyncResult2.AsyncState;
+                                    var req2 = (HttpWebRequest)asyncResult2.AsyncState!;
 
                                     using (var response = (HttpWebResponse)req2.EndGetResponse(asyncResult2))
                                     using (var stream = response.GetResponseStream())

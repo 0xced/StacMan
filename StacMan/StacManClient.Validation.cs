@@ -41,58 +41,54 @@ namespace StackExchange.StacMan
                 throw new ArgumentException(paramName + " cannot be empty", paramName);
         }
 
-        private void ValidateSortMinMax<TSort>(TSort? sort,
+        private void ValidateSortMinMax<TSort>(TSort sort,
             int? min = null, int? max = null,
             DateTime? mindate = null, DateTime? maxdate = null,
-            string minname = null, string maxname = null,
+            string? minname = null, string? maxname = null,
             Badges.Rank? minrank = null, Badges.Rank? maxrank = null,
             Badges.BadgeType? mintype = null, Badges.BadgeType? maxtype = null)
-            where TSort : struct // proxy for "where TSort: enum"
+            where TSort : Enum
         {
-            if (!typeof(TSort).IsEnum)
-                throw new ArgumentException("sort must be a nullable enumeration", nameof(sort));
-
             var sortsBySortType = ReflectionCache.SortsBySortType<TSort>.Value;
-            var sortActual = sort ?? default(TSort);
 
-            if (!sortsBySortType.ContainsKey(SortType.DateTime) || !sortsBySortType[SortType.DateTime].Contains(sortActual))
+            if (!sortsBySortType.ContainsKey(SortType.DateTime) || !sortsBySortType[SortType.DateTime].Contains(sort))
             {
                 if (mindate.HasValue)
-                    throw new ArgumentException("mindate must be null when sort=" + sortActual.ToString().ToLower(), nameof(mindate));
+                    throw new ArgumentException("mindate must be null when sort=" + sort.ToString().ToLower(), nameof(mindate));
                 if (maxdate.HasValue)
-                    throw new ArgumentException("maxdate must be null when sort=" + sortActual.ToString().ToLower(), nameof(maxdate));
+                    throw new ArgumentException("maxdate must be null when sort=" + sort.ToString().ToLower(), nameof(maxdate));
             }
 
-            if (!sortsBySortType.ContainsKey(SortType.Integer) || !sortsBySortType[SortType.Integer].Contains(sortActual))
+            if (!sortsBySortType.ContainsKey(SortType.Integer) || !sortsBySortType[SortType.Integer].Contains(sort))
             {
                 if (min.HasValue)
-                    throw new ArgumentException("min must be null when sort=" + sortActual.ToString().ToLower(), nameof(min));
+                    throw new ArgumentException("min must be null when sort=" + sort.ToString().ToLower(), nameof(min));
                 if (max.HasValue)
-                    throw new ArgumentException("min must be null when sort=" + sortActual.ToString().ToLower(), nameof(max));
+                    throw new ArgumentException("min must be null when sort=" + sort.ToString().ToLower(), nameof(max));
             }
 
-            if (!sortsBySortType.ContainsKey(SortType.String) || !sortsBySortType[SortType.String].Contains(sortActual))
+            if (!sortsBySortType.ContainsKey(SortType.String) || !sortsBySortType[SortType.String].Contains(sort))
             {
                 if (minname != null)
-                    throw new ArgumentException("minname must be null when sort=" + sortActual.ToString().ToLower(), nameof(minname));
+                    throw new ArgumentException("minname must be null when sort=" + sort.ToString().ToLower(), nameof(minname));
                 if (maxname != null)
-                    throw new ArgumentException("maxname must be null when sort=" + sortActual.ToString().ToLower(), nameof(maxname));
+                    throw new ArgumentException("maxname must be null when sort=" + sort.ToString().ToLower(), nameof(maxname));
             }
 
-            if (!sortsBySortType.ContainsKey(SortType.BadgeRank) || !sortsBySortType[SortType.BadgeRank].Contains(sortActual))
+            if (!sortsBySortType.ContainsKey(SortType.BadgeRank) || !sortsBySortType[SortType.BadgeRank].Contains(sort))
             {
                 if (minrank.HasValue)
-                    throw new ArgumentException("minrank must be null when sort=" + sortActual.ToString().ToLower(), nameof(minrank));
+                    throw new ArgumentException("minrank must be null when sort=" + sort.ToString().ToLower(), nameof(minrank));
                 if (maxrank.HasValue)
-                    throw new ArgumentException("maxrank must be null when sort=" + sortActual.ToString().ToLower(), nameof(maxrank));
+                    throw new ArgumentException("maxrank must be null when sort=" + sort.ToString().ToLower(), nameof(maxrank));
             }
 
-            if (!sortsBySortType.ContainsKey(SortType.BadgeType) || !sortsBySortType[SortType.BadgeType].Contains(sortActual))
+            if (!sortsBySortType.ContainsKey(SortType.BadgeType) || !sortsBySortType[SortType.BadgeType].Contains(sort))
             {
                 if (mintype.HasValue)
-                    throw new ArgumentException("mintype must be null when sort=" + sortActual.ToString().ToLower(), nameof(mintype));
+                    throw new ArgumentException("mintype must be null when sort=" + sort.ToString().ToLower(), nameof(mintype));
                 if (maxtype.HasValue)
-                    throw new ArgumentException("maxtype must be null when sort=" + sortActual.ToString().ToLower(), nameof(maxtype));
+                    throw new ArgumentException("maxtype must be null when sort=" + sort.ToString().ToLower(), nameof(maxtype));
             }
         }
     }

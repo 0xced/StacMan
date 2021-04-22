@@ -10,6 +10,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 
+#nullable enable
+
 namespace StackExchange.StacMan
 {
     public partial class StacManClient : IEventMethods
@@ -22,7 +24,7 @@ namespace StackExchange.StacMan
             get { return this; }
         }
 
-        Task<StacManResponse<Event>> IEventMethods.GetRecent(string site, string access_token, string filter, int? page, int? pagesize, DateTime? since)
+        Task<StacManResponse<Event>> IEventMethods.GetRecent(string site, string access_token, string? filter, int? page, int? pagesize, DateTime? since)
         {
             ValidateString(site, "site");
             ValidateString(access_token, "access_token");
@@ -49,7 +51,7 @@ namespace StackExchange.StacMan
         /// <summary>
         /// Get recent events that have occurred on the site. Effectively a stream of new users and content. [auth required] (API Method: "/events")
         /// </summary>
-        Task<StacManResponse<Event>> GetRecent(string site, string access_token, string filter = null, int? page = null, int? pagesize = null, DateTime? since = null);
+        Task<StacManResponse<Event>> GetRecent(string site, string access_token, string? filter = default, int? page = default, int? pagesize = default, DateTime? since = default);
 
     }
 }
